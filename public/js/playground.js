@@ -36,26 +36,55 @@ const ctlpoint_open_color_input = document.getElementById("ctlpoint_open_color_i
 const y_inverse_input = document.getElementById("y_inverse_input");
 
 var ctlpoints = [];
-var fullpath  = [];
+var fullpath = [];
 
 var stop = false;
 var frameCount = 0;
 var fps, fpsInterval, startTime, now, then, elapsed;
 
+/**
+ * Create a file download
+ * 
+ * @param {string} filename file name
+ * @param {string} text file content
+ * 
+*/
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
 
-document.onkeydown = function (e) {
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+function handle_keydown(e) {
+    let os = navigator.userAgent;
+    // Undo adding control point
     if (e.key === "Escape") {
         ctlpoints.pop();
         update_path();
     }
+    // Download session file
+    if ((os.search("Mac") !== -1 ? e.metaKey : e.ctrlKey) && e.key == 's') {
+        e.preventDefault();
+        download("session.txt", output_textarea.value);
+    }
 }
 
-function handle_files() {
-    // handle image uploads
-    const file_list = this.files;
-    background_img = new Image;
-    background_img.src = URL.createObjectURL(file_list[0]);
-}
+document.onkeydown = handle_keydown;
+
+
+    function handle_files() {
+        // handle image uploads
+        const file_list = this.files;
+        background_img = new Image;
+        background_img.src = URL.createObjectURL(file_list[0]);
+    }
 
 function clear_image() {
     img_input.value = '';
@@ -123,12 +152,12 @@ function draw_full_path(ctx) {
     // process color inputs
     const start_color = start_color_input.value;
     const end_color = end_color_input.value;
-    const red_value_start = parseInt(start_color.substr(1,2), 16);
-    const green_value_start = parseInt(start_color.substr(3,2), 16);
-    const blue_value_start = parseInt(start_color.substr(5,2), 16);
-    const red_value_end = parseInt(end_color.substr(1,2), 16);
-    const green_value_end = parseInt(end_color.substr(3,2), 16);
-    const blue_value_end = parseInt(end_color.substr(5,2), 16);
+    const red_value_start = parseInt(start_color.substr(1, 2), 16);
+    const green_value_start = parseInt(start_color.substr(3, 2), 16);
+    const blue_value_start = parseInt(start_color.substr(5, 2), 16);
+    const red_value_end = parseInt(end_color.substr(1, 2), 16);
+    const green_value_end = parseInt(end_color.substr(3, 2), 16);
+    const blue_value_end = parseInt(end_color.substr(5, 2), 16);
 
     // path start and end color in RGB
     var start_color_value = [red_value_start, green_value_start, blue_value_start];
@@ -157,19 +186,19 @@ function draw_full_path(ctx) {
 
     // draw control points
     for (let i = 0; i < ctlpoints.length; i++) {
-        if (i == 0 || i == ctlpoints.length - 1) {
+        if (i === 0 || i === ctlpoints.length - 1) {
             ctlpoints[i].set_color(ctlpoint_open_color_input.value);
         } else {
             ctlpoints[i].set_color(ctlpoint_color_input.value);
         }
-        if (i == 0 && i + 1 < ctlpoints.length) {
+        if (i === 0 && i + 1 < ctlpoints.length) {
             ctx.beginPath();
             ctx.moveTo(ctlpoints[i].get_x(), ctlpoints[i].get_y());
             ctx.lineTo(ctlpoints[i + 1].get_x(), ctlpoints[i + 1].get_y());
             ctx.strokeStyle = ctlpoint_open_color_input.value
             ctx.stroke();
         }
-        if (i + 1 == ctlpoints.length - 1) {
+        if (i + 1 === ctlpoints.length - 1) {
             ctx.beginPath();
             ctx.moveTo(ctlpoints[i].get_x(), ctlpoints[i].get_y());
             ctx.lineTo(ctlpoints[i + 1].get_x(), ctlpoints[i + 1].get_y());

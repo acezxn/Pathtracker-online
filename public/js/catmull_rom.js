@@ -21,15 +21,22 @@ class CatmullRom {
         var q3 = -3.0*ttt + 4.0*tt + t;
         var q4 = ttt - tt;
 
-        var tx = 0.5 * (this.ctlpoints[p0].x * q1 + this.ctlpoints[p1].x * q2 + this.ctlpoints[p2].x * q3 + this.ctlpoints[p3].x * q4);
-        var ty = 0.5 * (this.ctlpoints[p0].y * q1 + this.ctlpoints[p1].y * q2 + this.ctlpoints[p2].y * q3 + this.ctlpoints[p3].y * q4);
+        var tx, ty;
+        try {
+            tx = 0.5 * (this.ctlpoints[p0].x * q1 + this.ctlpoints[p1].x * q2 + this.ctlpoints[p2].x * q3 + this.ctlpoints[p3].x * q4);
+            ty = 0.5 * (this.ctlpoints[p0].y * q1 + this.ctlpoints[p1].y * q2 + this.ctlpoints[p2].y * q3 + this.ctlpoints[p3].y * q4);
+        } catch (error) {
+            tx = this.ctlpoints[p1].x;
+            tx = this.ctlpoints[p1].y;
+        }
+        
 
         return {tx, ty};
     }
 
     get_full_path(progress) {
         var path = []
-        for (var t = 0; t < this.ctlpoints.length-3.0; t += progress) {
+        for (var t = 0; t <= this.ctlpoints.length-3.0; t += progress) {
             var coordinate = this.get_spline_point(t);
             var point = new Point(coordinate.tx, coordinate.ty, 2, "#000000");
             path.push(point);
