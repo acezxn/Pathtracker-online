@@ -57,6 +57,13 @@ label {
   width: 10vw;
 }
 
+.option_input_middle {
+  text-align: left;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: max(1.5vw, 10px);
+  width: 4vw;
+}
+
 .option_input_short {
   text-align: left;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

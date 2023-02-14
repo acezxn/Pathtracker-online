@@ -1,4 +1,5 @@
 import Point from "./point.js";
+import Box from "./box.js";
 import CatmullRom from "./catmull_rom.js";
 
 // stage elements
@@ -146,6 +147,7 @@ function draw_full_path(ctx) {
         fullpath[i].set_color(current_color);
         fullpath[i].render(ctx);
         if (i > 0) {
+            ctx.beginPath();
             ctx.moveTo(fullpath[i - 1].get_x(), fullpath[i - 1].get_y());
             ctx.lineTo(fullpath[i].get_x(), fullpath[i].get_y());
             ctx.strokeStyle = current_color;
@@ -161,12 +163,14 @@ function draw_full_path(ctx) {
             ctlpoints[i].set_color(ctlpoint_color_input.value);
         }
         if (i == 0 && i + 1 < ctlpoints.length) {
+            ctx.beginPath();
             ctx.moveTo(ctlpoints[i].get_x(), ctlpoints[i].get_y());
             ctx.lineTo(ctlpoints[i + 1].get_x(), ctlpoints[i + 1].get_y());
             ctx.strokeStyle = ctlpoint_open_color_input.value
             ctx.stroke();
         }
         if (i == ctlpoints.length - 1 && i - 1 >= 0) {
+            ctx.beginPath();
             ctx.moveTo(ctlpoints[i - 1].get_x(), ctlpoints[i - 1].get_y());
             ctx.lineTo(ctlpoints[i].get_x(), ctlpoints[i].get_y());
             ctx.strokeStyle = ctlpoint_open_color_input.value
@@ -185,7 +189,7 @@ function animate() {
     elapsed = now - then;
     if (elapsed > fpsInterval) {
         then = now - (elapsed % fpsInterval);
-        ctx.clearRect(0, 0, canvas.clientWidth, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // draw background image
         if (background_img != null) {

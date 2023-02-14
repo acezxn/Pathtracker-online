@@ -4,6 +4,7 @@ const Playground = () => {
         <>
             <Helmet>
                 <script type="module" src="js/point.js"></script>
+                <script type="module" src="js/box.js"></script>
                 <script type="module" src="js/catmull_rom.js"></script>
                 <script type="module" src="js/playground.js"></script>
             </Helmet>
@@ -21,11 +22,11 @@ const Playground = () => {
                         </select>
                         <br />
                         <label className="option_text">Format: </label>
-                        <input type="text" id="output_prefix" className="option_input" style={{ textAlign: "right" }} defaultValue={"("}></input>
+                        <input type="text" id="output_prefix" className="option_input_middle" style={{ textAlign: "right" }} defaultValue={"("}></input>
                         <p style={{ display: "inline-block" }}>x</p>
                         <input type="text" id="output_midfix" className="option_input_short" defaultValue={", "}></input>
                         <p style={{ display: "inline-block" }}>y</p>
-                        <input type="text" id="output_suffix" className="option_input" defaultValue={")"}></input>
+                        <input type="text" id="output_suffix" className="option_input_middle" defaultValue={")"}></input>
                         <br />
                         <textarea rows="5" cols="88" id="output_textarea">
                         </textarea>
@@ -64,6 +65,7 @@ const Playground = () => {
 
                             <label className="option_text">Background image: </label>
                             <input type="file" id="img_input" name="img_input" accept="image/*" className="file_input"></input>
+                            <br />
                             <button className="option_input" id="clear_img" style={{ width: "auto" }}>clear image</button>
                             <br />
 
@@ -74,11 +76,11 @@ const Playground = () => {
                             }
                             <p className="option_text"><b>Color settings</b></p>
                             <label className="option_text">Path start color: </label>
-                            <input type="color" id="start_color_input" defaultValue={"#ff0000"} />
+                            <input type="color" id="start_color_input" defaultValue={"#03fce8"} />
                             <br />
 
                             <label className="option_text">Path end color: </label>
-                            <input type="color" id="end_color_input" defaultValue={"#0000ff"} />
+                            <input type="color" id="end_color_input" defaultValue={"#4103fc"} />
                             <br />
 
                             <label className="option_text">Control point color: </label>
@@ -86,7 +88,7 @@ const Playground = () => {
                             <br />
 
                             <label className="option_text">Open control point color: </label>
-                            <input type="color" id="ctlpoint_open_color_input" defaultValue={"#AAAAAA"} />
+                            <input type="color" id="ctlpoint_open_color_input" defaultValue={"#ff6161"} />
                             <br />
 
                             <label className="option_text">Robot color: </label>
