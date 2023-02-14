@@ -15,6 +15,9 @@ Settings
 // output related elements
 const output_option = document.getElementById("output_option");
 const output_textarea = document.getElementById("output_textarea");
+const output_prefix = document.getElementById("output_prefix");
+const output_midfix = document.getElementById("output_midfix");
+const output_suffix = document.getElementById("output_suffix");
 
 // stage related settings elements
 const field_width_input = document.getElementById("field_width");
@@ -33,6 +36,12 @@ const y_inverse_input = document.getElementById("y_inverse_input");
 
 var ctlpoints = [];
 var fullpath  = [];
+
+var stop = false;
+var frameCount = 0;
+var fps, fpsInterval, startTime, now, then, elapsed;
+
+
 document.onkeydown = function (e) {
     if (e.key === "Escape") {
         ctlpoints.pop();
@@ -85,7 +94,7 @@ function update_output() {
                 if (y_inverse_input.checked) {
                     y *= -1;
                 }
-                output += "(" + x + ", " + y + ")\n"
+                output += output_prefix.value + x + output_midfix.value + y + output_suffix.value + "\n";
             }
             break;
         case "full":
@@ -95,7 +104,7 @@ function update_output() {
                 if (y_inverse_input.checked) {
                     y *= -1;
                 }
-                output += "(" + x + ", " + y + ")\n"
+                output += output_prefix.value + x + output_midfix.value + y + output_suffix.value + "\n";
             }
             break;
     }
@@ -168,22 +177,49 @@ function draw_full_path(ctx) {
 }
 
 function animate() {
-    requestAnimationFrame(animate);
-    ctx.clearRect(0, 0, canvas.clientWidth, canvas.height);
-
-    // draw background image
-    if (background_img != null) {
-        ctx.drawImage(background_img, 0, 0, canvas.width, canvas.height);
+    if (stop) {
+        return;
     }
-    draw_full_path(ctx);
+    requestAnimationFrame(animate);
+    now = Date.now();
+    elapsed = now - then;
+    if (elapsed > fpsInterval) {
+        then = now - (elapsed % fpsInterval);
+        ctx.clearRect(0, 0, canvas.clientWidth, canvas.height);
+
+        // draw background image
+        if (background_img != null) {
+            ctx.drawImage(background_img, 0, 0, canvas.width, canvas.height);
+        }
+        draw_full_path(ctx);
+    }
 }
+
+function startAnimating(fps) {
+    fpsInterval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
+    animate();
+}
+
+// mouse coordinate update
 canvas.addEventListener("mousemove", show_mouse_coordinate, false);
+
+// add control point
 canvas.addEventListener('mousedown', add_ctlpoint, false);
+
+// output update
 x_origin_input.addEventListener('input', update_output, false);
 y_origin_input.addEventListener('input', update_output, false);
 y_inverse_input.addEventListener('change', update_output, false);
 output_option.addEventListener("change", update_output, false);
+output_prefix.addEventListener('input', update_output, false);
+output_midfix.addEventListener('input', update_output, false);
+output_suffix.addEventListener('input', update_output, false);
+
+
+// file handling
 img_input.addEventListener("change", handle_files, false);
 clear_img_button.addEventListener("click", clear_image, false);
 
-animate();
+startAnimating(60);

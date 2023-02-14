@@ -133,6 +133,10 @@ canvas {
   text-align: left;
 }
 
+.exportmanager {
+  text-align: left;
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;

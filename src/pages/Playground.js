@@ -12,15 +12,25 @@ const Playground = () => {
                 <div className="stageholder">
                     <canvas id="Stage" width="700" height="700"></canvas>
                     <p className="small" id="mouse_coordinate"></p>
-                    <p className="option_text"><b>Coordinate output</b></p>
-                    <label className="option_text">Things to output: </label>
-                    <select id="output_option" className="option_list" style = {{display : "inline-block"}}>
-                        <option value="ctlpoint" selected>Control points</option>
-                        <option value="full">Full path</option>
-                    </select>
-                    <br />
-                    <textarea rows="5" cols="83" id="output_textarea">
-                    </textarea>
+                    <div className="exportmanager">
+                        <p className="option_text"><b>Coordinate output</b></p>
+                        <label className="option_text">Things to output: </label>
+                        <select id="output_option" className="option_list" style={{ display: "inline-block" }}>
+                            <option value="ctlpoint">Control points</option>
+                            <option value="full">Full path</option>
+                        </select>
+                        <br />
+                        <label className="option_text">Format: </label>
+                        <input type="text" id="output_prefix" className="option_input" style={{ textAlign: "right" }} defaultValue={"("}></input>
+                        <p style={{ display: "inline-block" }}>x</p>
+                        <input type="text" id="output_midfix" className="option_input_short" defaultValue={", "}></input>
+                        <p style={{ display: "inline-block" }}>y</p>
+                        <input type="text" id="output_suffix" className="option_input" defaultValue={")"}></input>
+                        <br />
+                        <textarea rows="5" cols="88" id="output_textarea">
+                        </textarea>
+                    </div>
+
                 </div>
                 <div className="settings_tab">
                     <div className="tabpadding">
@@ -44,9 +54,9 @@ const Playground = () => {
                             <br />
 
                             <label className="option_text">Field origin (meters): </label>
-                            <p style={{ display: "inline-block" }}>x=</p>
+                            <p style={{ display: "inline-block" }}>x = </p>
                             <input type="text" id="x_origin_input" className="option_input_short" defaultValue={0}></input>
-                            <p style={{ display: "inline-block" }}>y=</p>
+                            <p style={{ display: "inline-block" }}>y = </p>
                             <input type="text" id="y_origin_input" className="option_input_short" defaultValue={0}></input>
                             <input type="checkbox" id="y_inverse_input" className="option_input_checkbox"></input>
                             <p style={{ display: "inline-block" }}>inverse y</p>
