@@ -169,10 +169,10 @@ function draw_full_path(ctx) {
             ctx.strokeStyle = ctlpoint_open_color_input.value
             ctx.stroke();
         }
-        if (i == ctlpoints.length - 1 && i - 1 >= 0) {
+        if (i + 1 == ctlpoints.length - 1) {
             ctx.beginPath();
-            ctx.moveTo(ctlpoints[i - 1].get_x(), ctlpoints[i - 1].get_y());
-            ctx.lineTo(ctlpoints[i].get_x(), ctlpoints[i].get_y());
+            ctx.moveTo(ctlpoints[i].get_x(), ctlpoints[i].get_y());
+            ctx.lineTo(ctlpoints[i + 1].get_x(), ctlpoints[i + 1].get_y());
             ctx.strokeStyle = ctlpoint_open_color_input.value
             ctx.stroke();
         }
