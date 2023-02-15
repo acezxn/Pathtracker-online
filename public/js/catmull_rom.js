@@ -38,7 +38,7 @@ class CatmullRom {
         var path = []
         for (var t = 0; t <= this.ctlpoints.length-3.0; t += progress) {
             var coordinate = this.get_spline_point(t);
-            var point = new Point(coordinate.tx, coordinate.ty, 2, "#000000");
+            var point = new Point(coordinate.tx, coordinate.ty, 3, "#000000");
             path.push(point);
         }
         return path;

@@ -1,5 +1,6 @@
+import Utils from "./utils.js";
 import Point from "./point.js";
-import Box from "./box.js";
+import Robot from "./robot.js";
 import SessionData from "./session_data.js";
 import SessionProcessor from "./session_processor.js";
 import CatmullRom from "./catmull_rom.js";
@@ -8,6 +9,10 @@ import CatmullRom from "./catmull_rom.js";
 const canvas = document.getElementById("Stage");
 const ctx = canvas.getContext("2d");
 const mouse_coordinate_field = document.getElementById("mouse_coordinate");
+
+// session objects
+var session = new SessionData();
+var session_processor = new SessionProcessor(session);
 
 /* 
 ==========================================================
@@ -41,14 +46,26 @@ const ctlpoint_open_color_input = document.getElementById("ctlpoint_open_color_i
 const robot_color_input = document.getElementById("robot_color_input");
 
 
-var session = new SessionData();
-var session_processor = new SessionProcessor(session);
-var ctlpoints = [];
-var fullpath = [];
+/* 
+==========================================================
+Simulation
+==========================================================
+*/
 
+// rendering
 var stop = false;
 var frameCount = 0;
 var fps, fpsInterval, startTime, now, then, elapsed;
+
+// object simulation
+var simulate_btn = document.getElementById("simulate_btn");
+var robot;              // the robot object
+var simulating = false; // whether simulation is ongoing
+var dt = 1;             // time unit
+var ctlpoints = [];     // control points
+var fullpath = [];      // full path
+
+
 
 function update_session() {
     // field related settings
@@ -116,25 +133,6 @@ function load_session() {
     sess_input.value = '';
 }
 
-/**
- * Create a file download
- * 
- * @param {string} filename file name
- * @param {string} text file content
- * 
-*/
-function download(filename, text) {
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
-}
 
 function handle_keydown(e) {
     let os = navigator.userAgent;
@@ -142,18 +140,24 @@ function handle_keydown(e) {
     if (e.key === "Escape") {
         ctlpoints.pop();
         update_path();
+        simulating = false;
     }
     // Download session file
     if ((os.search("Mac") !== -1 ? e.metaKey : e.ctrlKey) && e.key == 's') {
         e.preventDefault();
         update_session();
         session_processor.download_sess();
-        // download("session.txt", output_textarea.value);
     }
 }
 
-document.onkeydown = handle_keydown;
-
+function start_simulating() {
+    if (fullpath.length > 1) {
+        const orientation = Utils.format_angle(90 + Math.atan2(fullpath[1].get_y() - fullpath[0].get_y(), fullpath[1].get_x() - fullpath[0].get_x()) * 180 / Math.PI);
+        robot = new Robot(fullpath[0].get_x(), fullpath[0].get_y(), orientation, 100, 100, "#000000");
+        console.log(orientation);
+    }
+    simulating = true;
+}
 
 function handle_background() {
     // handle image uploads
@@ -170,11 +174,11 @@ function clear_image() {
 function show_mouse_coordinate(e) {
     // print mouse coordinate to the screen
     const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX - rect.left) - (+x_origin_input.value) / (+field_width_input.value) * canvas.width;
-    const y = (e.clientY - rect.top) - (+y_origin_input.value) / (+field_width_input.value) * canvas.width;
+    const x = (e.clientX - rect.left) - (+x_origin_input.value) / (+field_width_input.value) * canvas.clientWidth;
+    const y = (e.clientY - rect.top) - (+y_origin_input.value) / (+field_width_input.value) * canvas.clientWidth;
 
-    var converted_x = Math.round(x / canvas.width * (+field_width_input.value) * 100) / 100;
-    var converted_y = Math.round(y / canvas.width * (+field_width_input.value) * 100) / 100;
+    var converted_x = Math.round(x / canvas.clientWidth * (+field_width_input.value) * 100) / 100;
+    var converted_y = Math.round(y / canvas.clientWidth * (+field_width_input.value) * 100) / 100;
     if (y_inverse_input.checked) {
         converted_y *= -1;
     }
@@ -184,8 +188,8 @@ function show_mouse_coordinate(e) {
 function add_ctlpoint(e) {
     // input control poiont
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = (e.clientX - rect.left) / canvas.clientWidth * canvas.width;
+    const y = (e.clientY - rect.top) / canvas.clientHeight * canvas.height;
     ctlpoints.push(new Point(x, y));
     update_path();
 }
@@ -196,7 +200,7 @@ function update_output() {
         case "ctlpoint":
             for (let p of ctlpoints) {
                 var x = p.get_x() / canvas.width * (+field_width_input.value) - (+x_origin_input.value);
-                var y = p.get_y() / canvas.width * (+field_width_input.value) - (+y_origin_input.value);
+                var y = p.get_y() / canvas.height * (+field_width_input.value) - (+y_origin_input.value);
                 if (y_inverse_input.checked) {
                     y *= -1;
                 }
@@ -206,7 +210,7 @@ function update_output() {
         case "full":
             for (let p of fullpath) {
                 var x = p.get_x() / canvas.width * (+field_width_input.value) - (+x_origin_input.value);
-                var y = p.get_y() / canvas.width * (+field_width_input.value) - (+y_origin_input.value);
+                var y = p.get_y() / canvas.height * (+field_width_input.value) - (+y_origin_input.value);
                 if (y_inverse_input.checked) {
                     y *= -1;
                 }
@@ -285,6 +289,15 @@ function draw_full_path(ctx) {
     }
 }
 
+function draw_robot(ctx) {
+    if (simulating) {
+        robot.move_velocity([3, 3], dt);
+        robot.render(ctx);
+    } else {
+        robot = null;
+    }
+}
+
 function animate() {
     if (stop) {
         return;
@@ -298,9 +311,14 @@ function animate() {
 
         // draw background image
         if (background_img != null) {
-            ctx.drawImage(background_img, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(background_img, 0, 0, canvas.clientWidth, canvas.clientHeight);
         }
+
+        // draw full path
         draw_full_path(ctx);
+
+        // draw robot
+        draw_robot(ctx);
     }
 }
 
@@ -310,6 +328,9 @@ function startAnimating(fps) {
     startTime = then;
     animate();
 }
+
+ctx.lineWidth = 2;
+document.onkeydown = handle_keydown;
 
 // mouse coordinate update
 canvas.addEventListener("mousemove", show_mouse_coordinate, false);
@@ -326,10 +347,12 @@ output_prefix.addEventListener('input', update_output, false);
 output_midfix.addEventListener('input', update_output, false);
 output_suffix.addEventListener('input', update_output, false);
 
-
 // file handling
 img_input.addEventListener("change", handle_background, false);
 clear_img_button.addEventListener("click", clear_image, false);
 sess_input.addEventListener("change", load_session, false);
+
+// start simulation
+simulate_btn.addEventListener("click", start_simulating, false);
 
 startAnimating(60);

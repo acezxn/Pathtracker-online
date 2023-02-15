@@ -3,8 +3,10 @@ const Playground = () => {
     return (
         <>
             <Helmet>
+                <script type="module" src="js/utils.js"></script>
                 <script type="module" src="js/point.js"></script>
                 <script type="module" src="js/box.js"></script>
+                <script type="module" src="js/robot.js"></script>
                 <script type="module" src="js/session_data.js"></script>
                 <script type="module" src="js/session_processor.js"></script>
                 <script type="module" src="js/catmull_rom.js"></script>
@@ -13,7 +15,7 @@ const Playground = () => {
 
             <div style={{ overflow: "auto" }}>
                 <div className="stageholder">
-                    <canvas id="Stage" width="700" height="700"></canvas>
+                    <canvas id="Stage" width="1000" height="1000"></canvas>
                     <p className="small" id="mouse_coordinate"></p>
                     <div className="exportmanager">
                         <p className="option_text"><b>Coordinate output</b></p>
@@ -41,6 +43,9 @@ const Playground = () => {
                             <p><b>Controls</b></p>
                             <label className="option_text">Load session: </label>
                             <input type="file" id="sess_input" accept="application/JSON" className="file_input"></input>
+                            <br />
+                            <br />
+                            <button className="option_input" id="simulate_btn" style={{ width: "auto" }}>Simulate</button>
                         </div>
                     </div>
                 </div>
@@ -69,7 +74,6 @@ const Playground = () => {
 
                             <label className="option_text">Background image: </label>
                             <input type="file" id="img_input" name="img_input" accept="image/*" className="file_input"></input>
-                            <br />
                             <button className="option_input" id="clear_img" style={{ width: "auto" }}>clear image</button>
                             <br />
 

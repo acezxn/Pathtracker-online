@@ -1,9 +1,7 @@
 class Box {
-    constructor(x, y, width=100, height=100, center_x_offset=0, center_y_offset=0, theta=0, color="#000000") {
+    constructor(x, y, theta=0, width=100, height=100, color="#000000") {
         this.width  = width;
         this.height = height;
-        this.center_x_offset = center_x_offset;
-        this.center_y_offset = center_y_offset;
         this.x     = x;
         this.y     = y;
         this.theta = theta;
@@ -25,6 +23,8 @@ class Box {
     }
     rotate_by_angle(x, y, theta) {
         theta = theta * Math.PI / 180;
+        // return [Math.cos(theta) * (x-this.x-this.center_x_offset) - Math.sin(theta) * (y-this.y-this.center_y_offset) + this.x + this.center_x_offset, 
+        //     Math.sin(theta) * (x-this.x-this.center_x_offset) + Math.cos(theta) * (y-this.y-this.center_y_offset) + this.y + this.center_y_offset];
         return [Math.cos(theta) * (x-this.x) - Math.sin(theta) * (y-this.y) + this.x, Math.sin(theta) * (x-this.x) + Math.cos(theta) * (y-this.y) + this.y];
     }
     render(ctx) {

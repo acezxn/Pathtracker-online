@@ -1,5 +1,5 @@
 class Point {
-    constructor(x, y, radius=3, fill_color="#000000") {
+    constructor(x, y, radius=5, fill_color="#000000") {
         this.x          = x;
         this.y          = y;
         this.radius     = radius;
