@@ -5,6 +5,8 @@ const Playground = () => {
             <Helmet>
                 <script type="module" src="js/point.js"></script>
                 <script type="module" src="js/box.js"></script>
+                <script type="module" src="js/session_data.js"></script>
+                <script type="module" src="js/session_processor.js"></script>
                 <script type="module" src="js/catmull_rom.js"></script>
                 <script type="module" src="js/playground.js"></script>
             </Helmet>
@@ -37,6 +39,8 @@ const Playground = () => {
                     <div className="tabpadding">
                         <div className="tabcontent">
                             <p><b>Controls</b></p>
+                            <label className="option_text">Load session: </label>
+                            <input type="file" id="sess_input" accept="application/JSON" className="file_input"></input>
                         </div>
                     </div>
                 </div>
@@ -92,7 +96,7 @@ const Playground = () => {
                             <br />
 
                             <label className="option_text">Robot color: </label>
-                            <input type="color" id="ctlpoint_open_color_input" defaultValue={"#DDDD00"} />
+                            <input type="color" id="robot_color_input" defaultValue={"#DDDD00"} />
                         </div>
                     </div>
                 </div>

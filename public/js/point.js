@@ -11,6 +11,9 @@ class Point {
     get_y() {
         return this.y;
     }
+    get_color() {
+        return this.fill_color;
+    }
     set_coordinate(x, y) {
         this.x          = x;
         this.y          = y;
