@@ -6,10 +6,10 @@ const Playground = () => {
                 <script type="module" src="js/utils.js"></script>
                 <script type="module" src="js/point.js"></script>
                 <script type="module" src="js/box.js"></script>
+                <script type="module" src="js/algorithms/pure_pursuit.js"></script>
                 <script type="module" src="js/robot.js"></script>
-                <script type="module" src="js/session_data.js"></script>
                 <script type="module" src="js/session_processor.js"></script>
-                <script type="module" src="js/catmull_rom.js"></script>
+                <script type="module" src="js/algorithms/catmull_rom.js"></script>
                 <script type="module" src="js/playground.js"></script>
             </Helmet>
 
@@ -101,6 +101,68 @@ const Playground = () => {
 
                             <label className="option_text">Robot color: </label>
                             <input type="color" id="robot_color_input" defaultValue={"#DDDD00"} />
+                            {
+                                /* 
+                                Robot related settings 
+                                */
+                            }
+                            <p className="option_text"><b>Robot settings</b></p>
+                            <label className="option_text">track width (meters): </label>
+                            <input type="text" id="robot_width_input" className="option_input" defaultValue={0.5}></input>
+                            <br />
+
+                            <label className="option_text">robot length (meters): </label>
+                            <input type="text" id="robot_length_input" className="option_input" defaultValue={0.5}></input>
+                            <br />
+
+                            <label className="option_text">Max velocity (m/s): </label>
+                            <input type="text" id="max_velocity_input" className="option_input" defaultValue={4}></input>
+                            <br />
+
+                            <label className="option_text">Max acceleration (m/s^2): </label>
+                            <input type="text" id="max_accel_input" className="option_input" defaultValue={10}></input>
+                            <br />
+                            <br />
+
+                            <i>Note: the following constants needs to be tuned on the actual robot,
+                            don't directly copy the values to the robot code.</i>
+                            <br />
+                            <br />
+
+                            <label className="option_text">translational P gain: </label>
+                            <input type="text" id="kPT_input" className="option_input" defaultValue={300}></input>
+                            <br />
+
+                            <label className="option_text">translational I gain: </label>
+                            <input type="text" id="kIT_input" className="option_input" defaultValue={0}></input>
+                            <br />
+
+                            <label className="option_text">translational D gain: </label>
+                            <input type="text" id="kDT_input" className="option_input" defaultValue={0}></input>
+                            <br />
+
+                            <label className="option_text">rotational P gain: </label>
+                            <input type="text" id="kPR_input" className="option_input" defaultValue={300}></input>
+                            <br />
+
+                            <label className="option_text">rotational I gain: </label>
+                            <input type="text" id="kIR_input" className="option_input" defaultValue={0}></input>
+                            <br />
+
+                            <label className="option_text">rotational D gain: </label>
+                            <input type="text" id="kDR_input" className="option_input" defaultValue={0}></input>
+                            <br />
+
+                            {
+                                /* 
+                                Pure pursuit (PID based) settings
+                                */
+                            }
+                            <p className="option_text"><b>Pure pursuit (PID based)</b></p>
+                            <label className="option_text">look ahead radius (meters): </label>
+                            <input type="text" id="lookahead_radius_input" className="option_input" defaultValue={0.5}></input>
+                            <br />
+
                         </div>
                     </div>
                 </div>

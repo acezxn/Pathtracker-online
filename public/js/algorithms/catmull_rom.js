@@ -1,4 +1,4 @@
-import Point from "./point.js";
+import Point from "../point.js";
 
 class CatmullRom {
     constructor(ctlpoints) {

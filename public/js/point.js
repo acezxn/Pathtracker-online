@@ -11,6 +11,9 @@ class Point {
     get_y() {
         return this.y;
     }
+    get_radius() {
+        return this.radius;
+    }
     get_color() {
         return this.fill_color;
     }
@@ -20,6 +23,9 @@ class Point {
     }
     set_color(fill_color) {
         this.fill_color = fill_color;
+    }
+    distance_to(another) {
+        return Math.sqrt(Math.pow(this.x - another.get_x(), 2) + Math.pow(this.y - another.get_y(), 2));
     }
     render(ctx) {
         ctx.beginPath();
