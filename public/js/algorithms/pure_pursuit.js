@@ -46,6 +46,9 @@ class PurePursuit {
         return min_idx;
     }
     find_lookahead(position) {
+        if (position.distance_to(this.path[this.path.length-1]) < this.lookahead_radius) {
+            return this.path[this.path.length-1];
+        }
         for (let i = 0; i < this.path.length; i++) {
             var current_point = this.path[i];
             if (i + 1 < this.path.length) {
@@ -78,9 +81,6 @@ class PurePursuit {
                     return mid_point;
                 }
             }
-        }
-        if (position.distance_to(this.path[this.path.length-1]) < this.lookahead_radius) {
-            return this.path[this.path.length-1];
         }
         return this.path[this.closest(position)];
     }

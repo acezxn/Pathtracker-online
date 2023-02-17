@@ -92,6 +92,8 @@ const kPR_input = document.getElementById("kPR_input");
 const kIR_input = document.getElementById("kIR_input");
 const kDR_input = document.getElementById("kDR_input");
 
+const point_density_input = document.getElementById("point_density_input");
+
 /* 
 ==========================================================
 Simulation
@@ -366,7 +368,7 @@ function update_robot_config() {
 function update_path() {
     // update full path
     var catmull = new CatmullRom(ctlpoints);
-    fullpath = catmull.get_full_path(0.05);
+    fullpath = catmull.get_full_path(1/(+point_density_input.value));
     if (simulating) {
         toggle_simulation();
     }
@@ -485,16 +487,17 @@ document.onkeydown = handle_keydown;
 canvas.addEventListener("mousemove", show_mouse_coordinate, false);
 
 // add control point
-canvas.addEventListener('mousedown', add_ctlpoint, false);
+canvas.addEventListener("mousedown", add_ctlpoint, false);
+point_density_input.addEventListener("input", update_path, false);
 
 // output update
-x_origin_input.addEventListener('input', update_output, false);
-y_origin_input.addEventListener('input', update_output, false);
+x_origin_input.addEventListener("input", update_output, false);
+y_origin_input.addEventListener("input", update_output, false);
 y_inverse_input.addEventListener('change', update_output, false);
 output_option.addEventListener("change", update_output, false);
-output_prefix.addEventListener('input', update_output, false);
-output_midfix.addEventListener('input', update_output, false);
-output_suffix.addEventListener('input', update_output, false);
+output_prefix.addEventListener("input", update_output, false);
+output_midfix.addEventListener("input", update_output, false);
+output_suffix.addEventListener("input", update_output, false);
 
 // file handling
 img_input.addEventListener("change", handle_background, false);

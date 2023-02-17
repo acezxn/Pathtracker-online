@@ -44,6 +44,10 @@ const Playground = () => {
                             <label className="option_text">Load session: </label>
                             <input type="file" id="sess_input" accept="application/JSON" className="file_input"></input>
                             <br />
+                            <p className="option_text"><b>Path generation</b></p>
+                            <label className="option_text">Point density: </label>
+                            <input type="range" min="5" max="30" id="point_density_input" defaultValue={20}/>
+                            <br />
                             <br />
                             <button className="option_input" id="simulate_btn" style={{ width: "auto" }}>Simulate</button>
                         </div>
