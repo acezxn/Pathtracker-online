@@ -1,17 +1,17 @@
 import Point from "../point.js";
 
 class PurePursuit {
-    constructor(lookahead_radius) {
+    constructor(lookahead_radius, pid_constants) {
         this.lookahead_radius = lookahead_radius;
         // translational PID constants
-        this.kPT = 200;
-        this.kIT = 0.001;
-        this.kDT = 10;
+        this.kPT = pid_constants.kPT;
+        this.kIT = pid_constants.kIT;
+        this.kDT = pid_constants.kDT;
 
         // rotational PID constants
-        this.kPR = 300;
-        this.kIR = 0.01;
-        this.kDR = 10;
+        this.kPR = pid_constants.kPR;
+        this.kIR = pid_constants.kIR;
+        this.kDR = pid_constants.kDR;
         this.path = null;
         this.interpolate_interval = 10;
 

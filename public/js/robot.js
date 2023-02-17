@@ -9,7 +9,7 @@ class Robot {
         this.width = width;
         this.box = new Box(x, y, theta, width, length, color);
         this.lookahead_radius = lookahead_radius;
-        this.pursuit = new PurePursuit(lookahead_radius);
+        this.pursuit = new PurePursuit(lookahead_radius, {kPT, kIT, kDT, kPR, kIR, kDR});
         this.max_velocity = max_velocity;
         this.max_acceleration = max_acceleration;
         this.velocity = [0, 0];
