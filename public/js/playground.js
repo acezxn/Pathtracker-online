@@ -159,10 +159,10 @@ function update_session() {
         robot_color : robot_color_input.value,
 
         // robot settings
-        robot_width : Utils.pixels_to_meter(robot_appearance.width),
-        robot_length : Utils.pixels_to_meter(robot_appearance.length),
-        max_velocity : Utils.pixels_to_meter(robot_performance.max_velocity),
-        max_acceleration : Utils.pixels_to_meter(robot_performance.max_acceleration),
+        robot_width : Utils.pixels_to_meter(robot_appearance.width, +field_width_input.value, canvas.width),
+        robot_length : Utils.pixels_to_meter(robot_appearance.length, +field_width_input.value, canvas.width),
+        max_velocity : Utils.pixels_to_meter(robot_performance.max_velocity, +field_width_input.value, canvas.width),
+        max_acceleration : Utils.pixels_to_meter(robot_performance.max_acceleration, +field_width_input.value, canvas.width),
 
         // pure pursuit
         lookahead_radius : +lookahead_radius_input.value,
@@ -341,14 +341,14 @@ function update_output() {
 
 function update_robot_config() {
     robot_appearance = {
-        width : Utils.meters_to_pixel(+robot_width_input.value),
-        length : Utils.meters_to_pixel(+robot_length_input.value),
+        width : Utils.meters_to_pixel(+robot_width_input.value, +field_width_input.value, canvas.width),
+        length : Utils.meters_to_pixel(+robot_length_input.value, +field_width_input.value, canvas.width),
         color : robot_color_input.value,
     }
 
     robot_performance = {
-        max_velocity : Utils.meters_to_pixel(+max_velocity_input.value),
-        max_acceleration : Utils.meters_to_pixel(+max_accel_input.value),
+        max_velocity : Utils.meters_to_pixel(+max_velocity_input.value, +field_width_input.value, canvas.width),
+        max_acceleration : Utils.meters_to_pixel(+max_accel_input.value, +field_width_input.value, canvas.width),
     }
 
     pid_constants = {
@@ -360,7 +360,7 @@ function update_robot_config() {
         kDR : +kDR_input.value,
     }
 
-    lookahead_radius = Utils.meters_to_pixel(+lookahead_radius_input.value);
+    lookahead_radius = Utils.meters_to_pixel(+lookahead_radius_input.value, +field_width_input.value, canvas.width);
 }
 
 function update_path() {

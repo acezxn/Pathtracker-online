@@ -10,16 +10,16 @@ class Utils {
             return sign * (mod - 360);
         }
     }
-    static meters_to_pixel(meters) {
-        if (+field_width_input.value != 0) {
-            return meters / +field_width_input.value * canvas.width;
+    static meters_to_pixel(meters, field_width, canvas_width) {
+        if (field_width != 0) {
+            return meters / field_width *canvas_width;
         } 
         return 0;
     }
     
-    static pixels_to_meter(pixels) {
-        if (+canvas.width != 0) {
-            return pixels / canvas.width * +field_width_input.value;
+    static pixels_to_meter(pixels, field_width, canvas_width) {
+        if (canvas_width != 0) {
+            return pixels / canvas.width * field_width;
         } 
         return 0;
     }
