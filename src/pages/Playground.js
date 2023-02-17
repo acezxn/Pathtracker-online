@@ -37,7 +37,7 @@ const Playground = () => {
                     </div>
 
                 </div>
-                <div className="settings_tab">
+                <div className="controls_tab">
                     <div className="tabpadding">
                         <div className="tabcontent">
                             <p><b>Controls</b></p>
