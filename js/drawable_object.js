@@ -1,0 +1,5 @@
+class DrawableObject {
+    render() {
+        
+    }
+}

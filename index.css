@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* texts */
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  h1 {
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(5vw, 30px);
+  }
+  
+  p {
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(1.5vw, 15px);
+  }
+  
+  a {
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(1.5vw, 15px);
+  }
+  
+  label {
+    display: inline-block;
+    width: 20vw;
+    text-align: right;
+  }
+  
+  i {
+    display: inline-block;
+    text-align: left;
+    font-size: max(1vw, 10px);
+  }
+  
+  .option_text {
+    text-align: left;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(1.5vw, 10px);
+    padding: 0px 5px;
+  }
+  
+  .file_input {
+    text-align: left;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(1.5vw, 10px);
+  
+    color: transparent;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 5px 8px;
+    width: 22%;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+  }
+  
+  .option_input {
+    text-align: left;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(1.5vw, 10px);
+    width: 10vw;
+  
+    display: inline-block;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+  }
+  
+  .option_input_middle {
+    text-align: left;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(1.5vw, 10px);
+    width: 6vw;
+  }
+  
+  .option_input_short {
+    text-align: left;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(1.5vw, 10px);
+    width: 1.5vw;
+  }
+  
+  .option_input_checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .option_list {
+    padding: 2px;
+    font-size: max(1.5vw, 10px);
+  }
+  
+  .big {
+    text-align: center;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: max(8vw, 40px);
+  }
+  
+  .link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #1100AA;
+  }
+  
+  .link:hover {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #0008ff;
+  }
+  
+  .small {
+    text-align: left;
+    font-family: 'Roboto Mono', monospace;
+    font-size: max(1vw, 10px);
+  }
+  
+  /* stage related */
+  canvas {
+    border: 1px solid black;
+    width: auto;
+    height: 72.5vh;
+  }
+  
+  .stageholder {
+    float: left;
+    padding-left: 5%;
+    text-align: center;
+  }
+  
+  .tabpadding {
+    padding: 0.5% 0.5%;
+  }
+  
+  /* settings related */
+  .tabcontent {
+    background-color: #e5e5e5;
+    margin: 4px, 4px;
+    padding: 4px;
+    width: 40vw;
+    height: 35.1vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+  }
+  
+  .controls_tab {
+    float: left;
+    width: 40%;
+    text-align: left;
+  }
+  
+  .settings_tab {
+    float: left;
+    width: 40%;
+    text-align: left;
+  }
+  
+  .exportmanager {
+    text-align: left;
+  }
+  
+  /* The switch - the box around the slider */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .1s;
+    transition: .1s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .1s;
+    transition: .1s;
+  }
+  
+  input:checked+.slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked+.slider:before {
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
