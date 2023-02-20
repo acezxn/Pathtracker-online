@@ -1,4 +1,4 @@
-import Point from "../point.js";
+import Point from "../objects/point";
 
 class CatmullRom {
     constructor(ctlpoints) {
@@ -27,7 +27,7 @@ class CatmullRom {
             ty = 0.5 * (this.ctlpoints[p0].y * q1 + this.ctlpoints[p1].y * q2 + this.ctlpoints[p2].y * q3 + this.ctlpoints[p3].y * q4);
         } catch (error) {
             tx = this.ctlpoints[p1].x;
-            tx = this.ctlpoints[p1].y;
+            ty = this.ctlpoints[p1].y;
         }
         
 

@@ -19,7 +19,7 @@ class Utils {
     
     static pixels_to_meter(pixels, field_width, canvas_width) {
         if (canvas_width != 0) {
-            return pixels / canvas.width * field_width;
+            return pixels / canvas_width * field_width;
         } 
         return 0;
     }

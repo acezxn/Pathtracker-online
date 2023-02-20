@@ -1,5 +1,8 @@
-class Point {
+import DrawableObject from "./drawable_object";
+
+class Point extends DrawableObject {
     constructor(x, y, radius=5, fill_color="#000000") {
+        super();
         this.x          = x;
         this.y          = y;
         this.radius     = radius;
@@ -27,7 +30,7 @@ class Point {
     distance_to(another) {
         return Math.sqrt(Math.pow(this.x - another.get_x(), 2) + Math.pow(this.y - another.get_y(), 2));
     }
-    render(ctx) {
+    render(ctx, settings) {
         ctx.beginPath();
         ctx.fillStyle = this.fill_color;
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);

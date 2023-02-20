@@ -1,6 +1,8 @@
 import Box from "./box.js"
 import Point from "./point.js";
-import PurePursuit from "./algorithms/pure_pursuit.js";
+import PurePursuit from "../algorithms/pure_pursuit.js";
+import FieldObjects from "./field_objects.js";
+import SimulationManager from "./simulation_manager.js";
 
 class Robot {
     constructor({x, y, theta}, {width, length, color}, {max_velocity, max_acceleration}, {kPT, kIT, kDT, kPR, kIR, kDR}, lookahead_radius) {
@@ -50,8 +52,13 @@ class Robot {
         return 0;
     }
 
-    render(ctx) {
-        this.box.render(ctx);
+    render(ctx, settings) {
+        const finished = this.follow_path(FieldObjects.path.fullpath, 1/60);
+        if (finished) {
+            SimulationManager.toggle_simulation();
+            return;
+        }
+        this.box.render(ctx, settings);
         ctx.beginPath();
         ctx.arc(this.position[0], this.position[1], this.lookahead_radius, 0, 2 * Math.PI);
         ctx.stroke();

@@ -1,4 +1,4 @@
-import Point from "../point.js";
+import Point from "../objects/point";
 
 class PurePursuit {
     constructor(lookahead_radius, pid_constants) {

@@ -1,5 +1,8 @@
-class Box {
+import DrawableObject from "./drawable_object";
+
+class Box extends DrawableObject {
     constructor(x, y, theta=0, width=100, height=100, color="#000000") {
+        super();
         this.width  = width;
         this.height = height;
         this.x     = x;
@@ -27,7 +30,7 @@ class Box {
         //     Math.sin(theta) * (x-this.x-this.center_x_offset) + Math.cos(theta) * (y-this.y-this.center_y_offset) + this.y + this.center_y_offset];
         return [Math.cos(theta) * (x-this.x) - Math.sin(theta) * (y-this.y) + this.x, Math.sin(theta) * (x-this.x) + Math.cos(theta) * (y-this.y) + this.y];
     }
-    render(ctx) {
+    render(ctx, settings) {
         // top line
         const left_top_corner = this.rotate_by_angle(this.x - this.width / 2, this.y - this.height / 2, this.theta);
         const right_top_corner = this.rotate_by_angle(this.x + this.width / 2, this.y - this.height / 2, this.theta);
