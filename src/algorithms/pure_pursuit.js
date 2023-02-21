@@ -58,7 +58,7 @@ class PurePursuit {
 
                 if (current_dist < this.lookahead_radius && 
                     next_dist > this.lookahead_radius &&
-                    this.closest(position) < i) {
+                    this.closest(position) <= i) {
                     // interpolation
                     var mid_point = new Point(current_point.get_x(), current_point.get_y());
                     var j = 0;
