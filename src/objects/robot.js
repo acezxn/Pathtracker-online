@@ -5,13 +5,14 @@ import FieldObjects from "./field_objects.js";
 import SimulationManager from "./simulation_manager.js";
 
 class Robot {
-    constructor({x, y, theta}, {width, length, color}, {max_velocity, max_acceleration}, {kPT, kIT, kDT, kPR, kIR, kDR}, lookahead_radius) {
+    constructor({x, y, theta}, {width, length, color}, {max_velocity, max_acceleration}, {kPT, kIT, kDT, kPR, kIR, kDR}, {lookahead_radius, pursuit_mode}) {
         this.position = [x, y];
         this.theta = theta * Math.PI / 180;
         this.width = width;
         this.box = new Box(x, y, theta, width, length, color);
         this.lookahead_radius = lookahead_radius;
-        this.pursuit = new PurePursuit(lookahead_radius, {kPT, kIT, kDT, kPR, kIR, kDR});
+        this.pursuit = new PurePursuit(lookahead_radius, width, {kPT, kIT, kDT, kPR, kIR, kDR});
+        this.pursuit.set_mode(pursuit_mode);
         this.max_velocity = max_velocity;
         this.max_acceleration = max_acceleration;
         this.velocity = [0, 0];
@@ -40,10 +41,14 @@ class Robot {
         this.update_position();
     }
 
+    set_pursuit_mode(mode){
+        this.pursuit.set_mode(mode);
+    }
+
     follow_path(path, dt) {
         const pos = new Point(this.position[0], this.position[1]);
         this.pursuit.set_path(path)
-        if (this.pursuit.closest(pos) == path.length-1) {
+        if (this.pursuit.closest(pos) === path.length-1) {
             console.log("finished");
             return 1;
         }

@@ -1,4 +1,5 @@
 import Utils from "../utils";
+import PurePursuit from "../algorithms/pure_pursuit";
 import FieldObjects from "./field_objects";
 import Robot from "../objects/robot";
 
@@ -28,7 +29,10 @@ class SimulationManager {
         kDR: 0,
     }
 
-    static lookahead_radius = 0;
+    static pursuit_settings = {
+        lookahead_radius : 0,
+        pursuit_mode : 0
+    }
 
     static update_robot_config() {
         const canvas = document.getElementById("Stage");
@@ -66,8 +70,24 @@ class SimulationManager {
             kIR: +kIR_input.value,
             kDR: +kDR_input.value,
         }
-    
-        SimulationManager.lookahead_radius = Utils.meters_to_pixel(+lookahead_radius_input.value, +field_width_input.value, canvas.width);
+
+        const pursuit_mode_input = document.getElementById("pursuit_mode_input");
+
+        var mode = 0;
+        switch (pursuit_mode_input.value) {
+            case "pid":
+                mode = PurePursuit.pursuit_mode.pid;
+                break;
+            case "curvature":
+                mode = PurePursuit.pursuit_mode.curvature;
+                break;
+        }
+
+        SimulationManager.pursuit_settings = {
+            lookahead_radius : Utils.meters_to_pixel(+lookahead_radius_input.value, +field_width_input.value, canvas.width),
+            pursuit_mode : mode,
+        }
+        
     }
     
     static toggle_simulation() {
@@ -85,7 +105,7 @@ class SimulationManager {
                     theta: orientation,
                 }
     
-                var robot = new Robot(SimulationManager.robot_position, SimulationManager.robot_appearance, SimulationManager.robot_performance, SimulationManager.pid_constants, SimulationManager.lookahead_radius);
+                var robot = new Robot(SimulationManager.robot_position, SimulationManager.robot_appearance, SimulationManager.robot_performance, SimulationManager.pid_constants, SimulationManager.pursuit_settings);
                 FieldObjects.objects.push(robot)
             } else {
                 SimulationManager.simulating = false;

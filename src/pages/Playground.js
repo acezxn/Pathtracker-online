@@ -26,7 +26,12 @@ const Playground = () => {
 
                             <RobotSettings></RobotSettings>
 
-                            <p className="option_text"><b>Pure pursuit (PID based)</b></p>
+                            <p className="option_text"><b>Pure pursuit</b></p>
+                            <label className="option_text">pursuit mode: </label>
+                            <select id="pursuit_mode_input" className="option_list" style={{ display: "inline-block" }} onChange={OutputManager.update_output}>
+                                <option value="pid">PID based</option>
+                                <option value="curvature">Curvature based</option>
+                            </select>
                             <label className="option_text">look ahead radius (meters): </label>
                             <input type="text" id="lookahead_radius_input" className="option_input" defaultValue={0.5}></input>
                             <br />
@@ -50,7 +55,7 @@ const Playground = () => {
                 <p style={{ display: "inline-block" }}>y</p>
                 <input type="text" id="output_suffix" className="option_input_middle" defaultValue={")"} onChange={OutputManager.update_output}></input>
                 <br />
-                <textarea rows="5" cols="88" id="output_textarea">
+                <textarea rows="5" cols="88" id="output_textarea" className="textarea">
                 </textarea>
             </div>
         </>
