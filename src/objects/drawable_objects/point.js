@@ -1,7 +1,7 @@
 import DrawableObject from "./drawable_object";
 
 class Point extends DrawableObject {
-    constructor(x, y, radius=5, fill_color="#000000") {
+    constructor(x, y, radius=7, fill_color="#000000") {
         super();
         this.x          = x;
         this.y          = y;

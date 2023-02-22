@@ -3,6 +3,8 @@ import FieldObjects from "./field_objects";
 class OutputManager {
     /**
      * Show mouse coordinate on the screen
+     * 
+     * @param {Event} e mouse move event
     */
     static show_mouse_coordinate(e) {
         const canvas = document.getElementById("Stage");

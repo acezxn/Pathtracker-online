@@ -50,20 +50,11 @@ const Stage = props => {
 
         //Our draw came here
         const render = () => {
-            if (performance.now() - then > 1000 / target_fps) {
+            const elapsed = performance.now() - then;
+            if (elapsed > 1000 / target_fps) {
                 then = performance.now();
                 frameCount++
                 settings = {
-                    output_option: output_option.value,
-                    output_text: output_textarea.value,
-                    output_prefix: output_prefix.value,
-                    output_midfix: output_midfix.value,
-                    output_suffix: output_suffix.value,
-
-                    fieldwidth: field_width_input.value,
-                    field_origin_x: x_origin_input.value,
-                    field_origin_y: y_origin_input.value,
-                    inverse_y: y_inverse_input.value,
 
                     start_color: start_color_input.value,
                     end_color: end_color_input.value,
@@ -71,6 +62,8 @@ const Stage = props => {
                     ctlpoint_open_color: ctlpoint_open_color_input.value,
 
                     point_density: point_density_input.value,
+
+                    dt: elapsed / 1000,
                 }
                 draw(context, frameCount, settings)
             }

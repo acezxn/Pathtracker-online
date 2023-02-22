@@ -58,7 +58,7 @@ class Robot {
     }
 
     render(ctx, settings) {
-        const finished = this.follow_path(FieldObjects.path.fullpath, 1/60);
+        const finished = this.follow_path(FieldObjects.path.fullpath, settings.dt);
         if (finished) {
             SimulationManager.toggle_simulation();
             return;

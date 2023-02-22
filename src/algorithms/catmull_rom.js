@@ -7,19 +7,19 @@ class CatmullRom {
     }
 
     get_spline_point(t) {
-        var p1 = Math.floor(t)+1;
+        var p1 = Math.floor(t) + 1;
         var p2 = p1 + 1;
         var p3 = p2 + 1;
         var p0 = p1 - 1;
 
         t = t - Math.floor(t);
 
-        var tt = t*t;
-        var ttt = tt*t;
-        
-        var q1 = -ttt + 2.0*tt - t;
-        var q2 = 3.0*ttt - 5.0*tt + 2.0;
-        var q3 = -3.0*ttt + 4.0*tt + t;
+        var tt = t * t;
+        var ttt = tt * t;
+
+        var q1 = -ttt + 2.0 * tt - t;
+        var q2 = 3.0 * ttt - 5.0 * tt + 2.0;
+        var q3 = -3.0 * ttt + 4.0 * tt + t;
         var q4 = ttt - tt;
 
         var tx, ty;
@@ -30,15 +30,15 @@ class CatmullRom {
             tx = this.ctlpoints[p1].x;
             ty = this.ctlpoints[p1].y;
         }
-        
 
-        return {tx, ty};
+
+        return { tx, ty };
     }
 
     get_full_path(progress) {
         var path = []
         this.length = 0;
-        for (var t = 0; t <= this.ctlpoints.length-3.0; t += progress) {
+        for (var t = 0; t <= this.ctlpoints.length - 3.0; t += progress) {
             var coordinate = this.get_spline_point(t);
             if (t - progress >= 0) {
                 var prev_coordinate = this.get_spline_point(t - progress);
@@ -47,6 +47,11 @@ class CatmullRom {
                 var dist = Math.sqrt(Math.pow(x_dist, 2) + Math.pow(y_dist, 2));
                 this.length += dist;
             }
+            var point = new Waypoint(coordinate.tx, coordinate.ty, 0, 300, 0, 3, "#000000");
+            path.push(point);
+        }
+        if (this.ctlpoints.length - 3.0 >= 0) {
+            var coordinate = this.get_spline_point(this.ctlpoints.length - 3.0);
             var point = new Waypoint(coordinate.tx, coordinate.ty, 0, 300, 0, 3, "#000000");
             path.push(point);
         }

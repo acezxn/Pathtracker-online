@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 2048 2048" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<path d="M279.288 1.26166L1767.15 1.26166C1922.33 1.26166 2048.13 127.064 2048.13 282.248L2048.13 1772.79C2048.13 1927.98 1922.33 2053.78 1767.15 2053.78L279.288 2053.78C124.103 2053.78-1.69849 1927.98-1.69849 1772.79L-1.69849 282.248C-1.69849 127.064 124.103 1.26166 279.288 1.26166Z" id="Fill"/>
+<path d="M229.044 1023.07L1027.41 224.7L1825.78 1023.07L1027.41 1821.44L229.044 1023.07Z" id="Fill_2"/>
+<path d="M840.04 836.97L1265.52 1032.01L1035.08 1262.45L840.04 836.97Z" id="Fill_3"/>
+</defs>
+<clipPath id="ArtboardFrame">
+<rect height="2048" width="2048" x="0" y="0"/>
+</clipPath>
+<g clip-path="url(#ArtboardFrame)" id="Layer-1" vectornator:layerName="Layer 1">
+<g opacity="1">
+<use fill="#00d2ff" fill-rule="nonzero" stroke="none" xlink:href="#Fill"/>
+<mask height="2052.52" id="StrokeMask" maskUnits="userSpaceOnUse" width="2049.83" x="-1.69849" y="1.26166">
+<rect fill="#000000" height="2052.52" stroke="none" width="2049.83" x="-1.69849" y="1.26166"/>
+<use fill="#ffffff" fill-rule="evenodd" stroke="none" xlink:href="#Fill"/>
+</mask>
+<use fill="none" mask="url(#StrokeMask)" stroke="#006fff" stroke-linecap="butt" stroke-linejoin="round" stroke-width="200" xlink:href="#Fill"/>
+</g>
+<g opacity="1">
+<use fill="#ffffff" fill-rule="nonzero" stroke="none" xlink:href="#Fill_2"/>
+<mask height="1596.74" id="StrokeMask_2" maskUnits="userSpaceOnUse" width="1596.74" x="229.044" y="224.7">
+<rect fill="#000000" height="1596.74" stroke="none" width="1596.74" x="229.044" y="224.7"/>
+<use fill="#ffffff" fill-rule="evenodd" stroke="none" xlink:href="#Fill_2"/>
+</mask>
+<use fill="none" mask="url(#StrokeMask_2)" stroke="#006fff" stroke-linecap="butt" stroke-linejoin="round" stroke-width="200" xlink:href="#Fill_2"/>
+</g>
+<g opacity="1">
+<use fill="#006fff" fill-rule="nonzero" stroke="none" xlink:href="#Fill_3"/>
+<mask height="425.482" id="StrokeMask_3" maskUnits="userSpaceOnUse" width="425.482" x="840.04" y="836.97">
+<rect fill="#000000" height="425.482" stroke="none" width="425.482" x="840.04" y="836.97"/>
+<use fill="#ffffff" fill-rule="evenodd" stroke="none" xlink:href="#Fill_3"/>
+</mask>
+<use fill="none" mask="url(#StrokeMask_3)" stroke="#006fff" stroke-linecap="butt" stroke-linejoin="round" stroke-width="200" xlink:href="#Fill_3"/>
+</g>
+</g>
+</svg>
