@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import FieldObjects from '../objects/field_objects'
-import { add_ctlpoint, handle_keydown } from '../objects/event_handler'
+import { handle_mousedown, handle_mouseup, handle_mousemove, handle_keydown } from '../objects/event_handler'
 import OutputManager from '../objects/output_manager';
 
 var settings = {};
@@ -83,7 +83,7 @@ const Stage = props => {
         }
     }, [draw])
 
-    return <canvas ref={canvasRef} {...props} id="Stage" width={1000} height={1000} onClick={add_ctlpoint} onMouseMove={OutputManager.show_mouse_coordinate} />
+    return <canvas ref={canvasRef} {...props} id="Stage" width={1000} height={1000} onMouseDown={handle_mousedown} onMouseUp={handle_mouseup} onMouseMove={handle_mousemove} />
 }
 
 export default Stage
