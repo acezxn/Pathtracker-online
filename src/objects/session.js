@@ -1,7 +1,13 @@
 import FieldObjects from "./field_objects";
-import Point from "./point";
+import Point from "./drawable_objects/point";
 
 class Session {
+    /**
+     * Download string to file
+     * 
+     * @param {string} filename filename to download
+     * @param {string} text file content
+    */
     static download(filename, text) {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -15,6 +21,9 @@ class Session {
         document.body.removeChild(element);
     }
     
+    /**
+     * Download current session
+    */
     static download_sess() {
         // stage related settings elements
         const canvas = document.getElementById("Stage");
@@ -97,6 +106,9 @@ class Session {
         this.download("session.json", json);
     }
     
+    /**
+     * Load uploaded session
+    */
     static load_session(e) {
         // stage related settings elements
         const canvas = document.getElementById("Stage");

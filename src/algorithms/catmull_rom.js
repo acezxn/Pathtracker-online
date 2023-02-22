@@ -1,4 +1,4 @@
-import Waypoint from "../objects/waypoint";
+import Waypoint from "../objects/drawable_objects/waypoint";
 
 class CatmullRom {
     constructor(ctlpoints) {

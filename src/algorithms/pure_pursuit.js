@@ -1,4 +1,4 @@
-import Waypoint from "../objects/waypoint";
+import Waypoint from "../objects/drawable_objects/waypoint";
 class PurePursuit {
     static pursuit_mode = {
         pid: 0,
@@ -26,21 +26,42 @@ class PurePursuit {
         this.total_error_displacement = 0;
         this.total_error_rotation = 0;
     }
-    reset() {
-        this.interpolate_interval = 10;
 
+    /**
+     * Reset stored errors
+    */
+    reset() {
         this.prev_error_displacement = 0;
         this.prev_error_rotation = 0;
 
         this.total_error_displacement = 0;
         this.total_error_rotation = 0;
     }
+
+    /**
+     * Set path to follow
+     * 
+     * @param {Path} path path to follow
+    */
     set_path(path) {
         this.path = path;
     }
+
+    /**
+     * Set pursuit mode
+     * 
+     * @param {PurePursuit.pursuit_mode} mode pursuit mode
+    */
     set_mode(mode) {
         this.mode = mode;
     }
+
+    /**
+     * Find index of the closest waypoint to the robot
+     * 
+     * @param {Point} position robot position
+     * @returns {integer} index
+    */
     closest(position) {
         var min_dist = position.distance_to(this.path[0]);
         var min_idx = 0;
@@ -53,6 +74,13 @@ class PurePursuit {
         }
         return min_idx;
     }
+
+    /**
+     * Find lookahead waypoint
+     * 
+     * @param {Point} position robot position
+     * @returns {Waypoint} lookahead point
+    */
     find_lookahead(position) {
         if (position.distance_to(this.path[this.path.length - 1]) < this.lookahead_radius) {
             return this.path[this.path.length - 1];
@@ -93,6 +121,16 @@ class PurePursuit {
         }
         return this.path[this.closest(position)];
     }
+
+    /**
+     * Convert global waypoint to local waypoint
+     * 
+     * @param {Point} point waypoint to convert
+     * @param {Point} position robot position
+     * @param {number} theta robot's orientation
+     * 
+     * @returns {Waypoint} local waypoint
+    */
     to_local_coordinate(point, position, theta) {
         theta = theta * 180 / Math.PI
         const xDist = point.get_x() - position.get_x();
@@ -102,6 +140,14 @@ class PurePursuit {
         const newY = yDist * Math.sin((theta - 90) * Math.PI / 180.0) + xDist * Math.cos((theta - 90) * Math.PI / 180.0);
         return new Waypoint(newX, newY, 0, point.get_linvel(), point.get_angvel());
     }
+
+    /**
+     * Iteration of pure pursuit algorithm
+     * 
+     * @param {Point} position robot position
+     * @param {number} theta robot's orientation
+     * @param {boolean} reverse whether reverse movement is enabled
+    */
     step(position, theta, reverse = false) {
         const lookahead = this.to_local_coordinate(this.find_lookahead(position), position, theta);
         var forward = 0;
@@ -129,10 +175,12 @@ class PurePursuit {
                 forward = lookahead.get_linvel(); // get linear velocity
                 rotation = (forward / 20) * curvature * this.trackwidth / 2;
                 break;
+            default:
+                console.log("PurePursuit: invalid pursuit mode");
         }
 
 
-        return [forward + rotation, forward - rotation];
+        return reverse ? [-(forward + rotation), -(forward - rotation)] : [forward + rotation, forward - rotation];
     }
 }
 

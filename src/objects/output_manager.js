@@ -1,6 +1,9 @@
 import FieldObjects from "./field_objects";
 
 class OutputManager {
+    /**
+     * Show mouse coordinate on the screen
+    */
     static show_mouse_coordinate(e) {
         const canvas = document.getElementById("Stage");
         const field_width_input = document.getElementById("field_width");
@@ -22,6 +25,9 @@ class OutputManager {
         mouse_coordinate_field.innerText = "Coordinate: (" + converted_x + ",\t" + converted_y + ")";
     }
 
+    /**
+     * Update coordinate output
+    */
     static update_output() {
         const canvas = document.getElementById("Stage");
         const output_option = document.getElementById("output_option");

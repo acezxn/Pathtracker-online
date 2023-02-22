@@ -1,6 +1,6 @@
-import OutputManager from "./output_manager";
+import OutputManager from "../output_manager";
 import DrawableObject from "./drawable_object";
-import CatmullRom from "../algorithms/catmull_rom";
+import CatmullRom from "../../algorithms/catmull_rom";
 
 class Path extends DrawableObject {
     constructor() {

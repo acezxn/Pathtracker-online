@@ -1,5 +1,5 @@
-import BackgroundImg from "./background_img";
-import Path from "./path";
+import BackgroundImg from "./drawable_objects/background_img";
+import Path from "./drawable_objects/path";
 
 class FieldObjects {
     static background = new BackgroundImg();

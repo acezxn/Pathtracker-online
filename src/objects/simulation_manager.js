@@ -1,7 +1,7 @@
 import Utils from "../utils";
 import PurePursuit from "../algorithms/pure_pursuit";
 import FieldObjects from "./field_objects";
-import Robot from "../objects/robot";
+import Robot from "./drawable_objects/robot";
 
 class SimulationManager {
     static simulating = false;
@@ -34,6 +34,9 @@ class SimulationManager {
         pursuit_mode : 0
     }
 
+    /**
+     * Updates the robot configurations
+    */
     static update_robot_config() {
         const canvas = document.getElementById("Stage");
         const field_width_input = document.getElementById("field_width");
@@ -81,6 +84,8 @@ class SimulationManager {
             case "curvature":
                 mode = PurePursuit.pursuit_mode.curvature;
                 break;
+            default:
+                console.log("PurePursuit: invalid pursuit mode");
         }
 
         SimulationManager.pursuit_settings = {
@@ -90,6 +95,9 @@ class SimulationManager {
         
     }
     
+    /**
+     * Start and stop simulation
+     */
     static toggle_simulation() {
         SimulationManager.simulating = !SimulationManager.simulating;
     

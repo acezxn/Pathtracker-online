@@ -1,8 +1,8 @@
 import Box from "./box.js"
 import Point from "./point.js";
-import PurePursuit from "../algorithms/pure_pursuit.js";
-import FieldObjects from "./field_objects.js";
-import SimulationManager from "./simulation_manager.js";
+import PurePursuit from "../../algorithms/pure_pursuit.js";
+import FieldObjects from "../field_objects.js";
+import SimulationManager from "../simulation_manager.js";
 
 class Robot {
     constructor({x, y, theta}, {width, length, color}, {max_velocity, max_acceleration}, {kPT, kIT, kDT, kPR, kIR, kDR}, {lookahead_radius, pursuit_mode}) {
