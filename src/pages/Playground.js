@@ -2,12 +2,14 @@ import OutputManager from "../objects/output_manager";
 import Stage from "../components/Stage";
 
 import FieldSettings from "../components/FieldSettings";
+import FieldObjects from "../objects/field_objects";
 import ColorSettings from "../components/ColorSettings";
 import RobotSettings from "../components/RobotSettings";
 import ControlsTab from "../components/ControlsTab";
 import NavBar from "../components/NavBar";
 
 const Playground = () => {
+    FieldObjects.reset();
     return (
         <>
             <NavBar/>

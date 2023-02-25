@@ -5,6 +5,12 @@ class FieldObjects {
     static background = new BackgroundImg();
     static path = new Path();
     static objects = [FieldObjects.background, FieldObjects.path];
+    
+    static reset() {
+        FieldObjects.background = new BackgroundImg();
+        FieldObjects.path = new Path();
+        FieldObjects.objects = [FieldObjects.background, FieldObjects.path];
+    }
 }
 
 export default FieldObjects;
