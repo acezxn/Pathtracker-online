@@ -5,11 +5,13 @@ import FieldSettings from "../components/FieldSettings";
 import ColorSettings from "../components/ColorSettings";
 import RobotSettings from "../components/RobotSettings";
 import ControlsTab from "../components/ControlsTab";
+import NavBar from "../components/NavBar";
 
 const Playground = () => {
     return (
         <>
-            <div style={{ overflow: "auto" }}>
+            <NavBar/>
+            <div style={{ overflow: "auto", paddingLeft : "2vw"}}>
                 <div className="stageholder">
                     <Stage />
                     <p className="small" id="mouse_coordinate"></p>
@@ -18,7 +20,7 @@ const Playground = () => {
                 <div className="settings_tab">
                     <div className="tabpadding">
                         <div className="tabcontent">
-                            <p><b>Settings</b></p>
+                            <p className="tab_title"><b>Settings</b></p>
 
                             <FieldSettings></FieldSettings>
 
@@ -26,7 +28,7 @@ const Playground = () => {
 
                             <RobotSettings></RobotSettings>
 
-                            <p className="option_text"><b>Pure pursuit</b></p>
+                            <p className="option_title"><b>Pure pursuit</b></p>
                             <label className="option_text">pursuit mode: </label>
                             <select id="pursuit_mode_input" className="option_list" style={{ display: "inline-block" }} onChange={OutputManager.update_output}>
                                 <option value="pid">PID based</option>
@@ -40,7 +42,7 @@ const Playground = () => {
                     </div>
                 </div>
             </div>
-            <div className="exportmanager">
+            <div className="exportmanager" style={{ paddingLeft : "6.5vw"}}>
                 <p className="option_text"><b>Coordinate output</b></p>
                 <label className="option_text">Things to output: </label>
                 <select id="output_option" className="option_list" style={{ display: "inline-block" }} onChange={OutputManager.update_output}>

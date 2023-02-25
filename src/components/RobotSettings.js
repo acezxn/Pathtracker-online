@@ -1,6 +1,6 @@
 export default function RobotSettings() {
     return <>
-        <p className="option_text"><b>Robot settings</b></p>
+        <p className="option_title"><b>Robot settings</b></p>
         <label className="option_text">track width (meters): </label>
         <input type="text" id="robot_width_input" className="option_input" defaultValue={0.5}></input>
         <br />
@@ -10,7 +10,7 @@ export default function RobotSettings() {
         <br />
 
         <label className="option_text">Max velocity (m/s): </label>
-        <input type="text" id="max_velocity_input" className="option_input" defaultValue={4}></input>
+        <input type="text" id="max_velocity_input" className="option_input" defaultValue={2}></input>
         <br />
 
         <label className="option_text">Max acceleration (m/s^2): </label>

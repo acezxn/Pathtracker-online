@@ -1,4 +1,5 @@
 import Waypoint from "../objects/drawable_objects/waypoint";
+import Utils from "../utils";
 
 class CatmullRom {
     constructor(ctlpoints) {
@@ -36,6 +37,10 @@ class CatmullRom {
     }
 
     get_full_path(progress) {
+        const max_velocity_input = document.getElementById("max_velocity_input");
+        const field_width_input = document.getElementById("field_width");
+        const canvas = document.getElementById("Stage");
+        const velocity = Utils.meters_to_pixel(+max_velocity_input.value, +field_width_input.value, canvas.width);
         var path = []
         this.length = 0;
         for (var t = 0; t <= this.ctlpoints.length - 3.0; t += progress) {
@@ -47,12 +52,12 @@ class CatmullRom {
                 var dist = Math.sqrt(Math.pow(x_dist, 2) + Math.pow(y_dist, 2));
                 this.length += dist;
             }
-            var point = new Waypoint(coordinate.tx, coordinate.ty, 0, 300, 0, 3, "#000000");
+            var point = new Waypoint(coordinate.tx, coordinate.ty, 0, velocity, 0, 3, "#000000");
             path.push(point);
         }
         if (this.ctlpoints.length - 3.0 >= 0) {
             var coordinate = this.get_spline_point(this.ctlpoints.length - 3.0);
-            var point = new Waypoint(coordinate.tx, coordinate.ty, 0, 300, 0, 3, "#000000");
+            var point = new Waypoint(coordinate.tx, coordinate.ty, 0, velocity, 0, 3, "#000000");
             path.push(point);
         }
         return path;

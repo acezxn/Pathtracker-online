@@ -1,6 +1,6 @@
 export default function ColorSettings() {
     return <>
-        <p className="option_text"><b>Color settings</b></p>
+        <p className="option_title"><b>Color settings</b></p>
         <label className="option_text">Path start color: </label>
         <input type="color" id="start_color_input" defaultValue={"#03fce8"} />
         <br />

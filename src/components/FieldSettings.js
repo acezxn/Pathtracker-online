@@ -3,7 +3,7 @@ import { set_background_img, clear_background_img } from "../objects/event_handl
 
 export default function FieldSettings() {
     return <>
-        <p className="option_text"><b>Field related</b></p>
+        <p className="option_title"><b>Field related</b></p>
         <label className="option_text">Field width (meters): </label>
         <input type="text" id="field_width" name="field_width" className="option_input" defaultValue={4} onInput={OutputManager.update_output}></input>
         <br />

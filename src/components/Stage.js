@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import FieldObjects from '../objects/field_objects'
-import { handle_mousedown, handle_mouseup, handle_mousemove, handle_keydown } from '../objects/event_handler'
+import { handle_mousedown, handle_mouseup, handle_mousemove, handle_keydown, handle_ctxmenu } from '../objects/event_handler'
 import OutputManager from '../objects/output_manager';
 
 var settings = {};
@@ -46,6 +46,7 @@ const Stage = props => {
         const point_density_input = document.getElementById("point_density_input");
 
         document.onkeydown = handle_keydown;
+        window.addEventListener("contextmenu", handle_ctxmenu);
         context.lineWidth = 2;
 
         //Our draw came here
@@ -76,7 +77,7 @@ const Stage = props => {
         }
     }, [draw])
 
-    return <canvas ref={canvasRef} {...props} id="Stage" width={1000} height={1000} onMouseDown={handle_mousedown} onMouseUp={handle_mouseup} onMouseMove={handle_mousemove} />
+    return <canvas ref={canvasRef} {...props} id="Stage" width={1000} height={1000} onMouseDown={handle_mousedown} onMouseUp={handle_mouseup} onMouseMove={handle_mousemove}/>
 }
 
 export default Stage

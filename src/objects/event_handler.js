@@ -4,6 +4,7 @@ import Point from "./drawable_objects/point";
 import OutputManager from "./output_manager";
 
 var leftdown = false;
+var rightdown = false;
 var ctlpoint_editing = null;
 
 /**
@@ -42,6 +43,26 @@ function left_click(e) {
     }
 }
 
+function right_click(e) {
+    if (!rightdown) {
+        return;
+    }
+
+    const canvas = e.target;
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / canvas.clientWidth * canvas.width;
+    const y = (e.clientY - rect.top) / canvas.clientHeight * canvas.height;
+    const mouse_point = new Point(x, y);
+
+    const last_wp = FieldObjects.path.ctlpoints[FieldObjects.path.ctlpoints.length - 1]
+
+    // undo add control point
+    if (last_wp.distance_to(mouse_point) <= last_wp.get_radius()) {
+        FieldObjects.path.ctlpoints.pop();
+        FieldObjects.path.update();
+    }
+}
+
 /**
  * Handle mouse down
  * 
@@ -51,6 +72,10 @@ function handle_mousedown(e) {
     if (e.button === 0) {
         leftdown = true;
         left_click(e);
+    }
+    else if (e.button === 2) {
+        rightdown = true;
+        right_click(e);
     }
 }
 
@@ -63,8 +88,11 @@ function handle_mousedown(e) {
 function handle_mouseup(e) {
     if (e.button === 0) {
         leftdown = false;
-        ctlpoint_editing = null;
     }
+    else if (e.button === 2) {
+        rightdown = false;
+    }
+    ctlpoint_editing = null;
 }
 
 
@@ -77,7 +105,7 @@ function handle_mousemove(e) {
     OutputManager.show_mouse_coordinate(e);
     if (!leftdown) {
         return;
-    } 
+    }
 
     const canvas = e.target;
     const rect = canvas.getBoundingClientRect();
@@ -99,6 +127,9 @@ function handle_mousemove(e) {
     }
 }
 
+function handle_ctxmenu(e) {
+    e.preventDefault();
+}
 
 /**
  * handle key down
@@ -107,12 +138,12 @@ function handle_mousemove(e) {
 */
 function handle_keydown(e) {
     let os = navigator.userAgent;
-    // Undo adding control point
+    // undo adding control point
     if (e.key === "Escape") {
         FieldObjects.path.ctlpoints.pop();
         FieldObjects.path.update();
     }
-    // Download session file
+    // download session file
     if ((os.search("Mac") !== -1 ? e.metaKey : e.ctrlKey) && e.key === 's') {
         e.preventDefault();
         Session.download_sess();
@@ -143,10 +174,11 @@ function clear_background_img(e) {
 }
 
 export {
-    handle_mousedown, 
+    handle_mousedown,
     handle_mouseup,
     handle_mousemove,
-    handle_keydown, 
-    set_background_img, 
+    handle_ctxmenu,
+    handle_keydown,
+    set_background_img,
     clear_background_img
 }

@@ -12,11 +12,11 @@ export default function ControlsTab() {
         <div className="controls_tab">
             <div className="tabpadding">
                 <div className="tabcontent">
-                    <p><b>Controls</b></p>
+                    <p className="tab_title"><b>Controls</b></p>
                     <label className="option_text">Load session: </label>
                     <input type="file" id="sess_input" accept="application/JSON" className="file_input" onChange={Session.load_session}></input>
                     <br />
-                    <p className="option_text"><b>Path generation</b></p>
+                    <p className="option_title"><b>Path generation</b></p>
                     <label className="option_text">Point density: </label>
                     <input type="range" min="5" max="30" id="point_density_input" defaultValue={20} onInput={update_path} onChange={update_path}/>
                     <br />
