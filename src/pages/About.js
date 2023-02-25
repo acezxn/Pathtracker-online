@@ -28,7 +28,6 @@ const About = () => {
                 This tool uses a modified version of the original algorithm to find the 
                 lookahead point due to these assumptions:
                 <br />
-                <br />
                 <ol>
                     <li>
                     A path consists of many points

@@ -11,14 +11,14 @@ class Utils {
         }
     }
     static meters_to_pixel(meters, field_width, canvas_width) {
-        if (field_width != 0) {
+        if (field_width !== 0) {
             return meters / field_width *canvas_width;
         } 
         return 0;
     }
     
     static pixels_to_meter(pixels, field_width, canvas_width) {
-        if (canvas_width != 0) {
+        if (canvas_width !== 0) {
             return pixels / canvas_width * field_width;
         } 
         return 0;
