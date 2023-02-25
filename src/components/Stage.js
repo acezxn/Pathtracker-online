@@ -18,24 +18,11 @@ const Stage = props => {
     }
 
     useEffect(() => {
-
-        const canvas = canvasRef.current
-        const context = canvas.getContext('2d')
-        let frameCount = 0
-        let animationFrameId
-
-        // output related elements
-        const output_option = document.getElementById("output_option");
-        const output_textarea = document.getElementById("output_textarea");
-        const output_prefix = document.getElementById("output_prefix");
-        const output_midfix = document.getElementById("output_midfix");
-        const output_suffix = document.getElementById("output_suffix");
-
-        // stage related settings elements
-        const field_width_input = document.getElementById("field_width");
-        const x_origin_input = document.getElementById("x_origin_input");
-        const y_origin_input = document.getElementById("y_origin_input");
-        const y_inverse_input = document.getElementById("y_inverse_input");
+        OutputManager.update_output();
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+        let frameCount = 0;
+        let animationFrameId;
 
         // color related settings elements
         const start_color_input = document.getElementById("start_color_input");

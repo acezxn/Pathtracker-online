@@ -13,7 +13,7 @@ export default function Help() {
                     multiple pursuit algorithms.
                     <br />
                     <br />
-                    <img src="/images/interface.png" alt="interface" style={{width : "40vw"}}/>
+                    <img src={require("../images/interface.png")} alt="interface" style={{width : "40vw"}}/>
                     <br />
                     <br />
                     <b>The field</b>
