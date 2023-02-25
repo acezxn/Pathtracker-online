@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const NoPage = () => {
     return (
         <>
-            <h1 class="big">404</h1>
+            <h1 className="big">404</h1>
             <h3 style={{textAlign:"center"}}>page not found</h3>
-            <a class="link" href="/pathtracker/">Go to home</a>
+            <Link className="link" to="/">Go to home</Link>
         </>
     );
 };

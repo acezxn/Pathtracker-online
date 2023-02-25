@@ -28,6 +28,7 @@ const About = () => {
                 This tool uses a modified version of the original algorithm to find the 
                 lookahead point due to these assumptions:
                 <br />
+                </p>
                 <ol>
                     <li>
                     A path consists of many points
@@ -36,6 +37,7 @@ const About = () => {
                     The path may overlap with each other
                     </li>
                 </ol>
+                <p>
                 For information about the original algorithm, see the resource below about basic pure pursuit. 
                 <br />
                 <br />

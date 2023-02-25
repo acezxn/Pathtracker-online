@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom"
 export default function NavBar() {
     return <>
         <ul>
-            <li><a href="/pathtracker/">Home</a></li>
-            <li><a href="/pathtracker/about">About</a></li>
-            <li><a href="/pathtracker/help">Help</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/help">help</Link></li>
         </ul>
         <div style={{ paddingBottom: "0.5vw"}}>
         </div>
