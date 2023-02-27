@@ -16,6 +16,10 @@ export default function RobotSettings() {
         <label className="option_text">Max acceleration (m/s^2): </label>
         <input type="text" id="max_accel_input" className="option_input" defaultValue={10}></input>
         <br />
+
+        <label className="option_text">Max jerk (m/s^3): </label>
+        <input type="text" id="max_jerk_input" className="option_input" defaultValue={200}></input>
+        <br />
         <br />
 
         <i>Note: the following constants needs to be tuned on the actual robot,

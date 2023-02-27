@@ -150,6 +150,10 @@ function handle_keydown(e) {
     }
 }
 
+function handle_showgrid() {
+    FieldObjects.grid.hidden = !FieldObjects.grid.hidden;
+} 
+
 /**
  * Set background image
  * 
@@ -179,6 +183,7 @@ export {
     handle_mousemove,
     handle_ctxmenu,
     handle_keydown,
+    handle_showgrid,
     set_background_img,
     clear_background_img
 }

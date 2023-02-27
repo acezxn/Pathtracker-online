@@ -5,8 +5,11 @@ import FieldObjects from "../field_objects.js";
 import SimulationManager from "../simulation_manager.js";
 
 class Robot {
-    constructor({x, y, theta}, {width, length, color}, {max_velocity, max_acceleration}, {kPT, kIT, kDT, kPR, kIR, kDR}, {lookahead_radius, pursuit_mode}) {
+    constructor({x, y, theta}, {width, length, color}, {max_velocity, max_acceleration, max_jerk}, {kPT, kIT, kDT, kPR, kIR, kDR}, {lookahead_radius, pursuit_mode}) {
         this.position = [x, y];
+        this.velocity = [0, 0];
+        this.allowed_acceleration = [0, 0];
+        this.max_jerk = max_jerk;
         this.theta = theta * Math.PI / 180;
         this.width = width;
         this.box = new Box(x, y, theta, width, length, color);
@@ -15,7 +18,6 @@ class Robot {
         this.pursuit.set_mode(pursuit_mode);
         this.max_velocity = max_velocity;
         this.max_acceleration = max_acceleration;
-        this.velocity = [0, 0];
     }
 
     set_color(color) {
@@ -30,11 +32,15 @@ class Robot {
         velocity[0] = Math.max(Math.min(velocity[0], this.max_velocity), -this.max_velocity);
         velocity[1] = Math.max(Math.min(velocity[1], this.max_velocity), -this.max_velocity);
 
+        var last_allowed_acceleration = this.allowed_acceleration;
         var last_velocity = this.velocity;
+
         for (let i = 0; i < velocity.length; i++) {
-            this.velocity[i] = last_velocity[i] + Math.min(this.max_acceleration * dt, Math.max(-this.max_acceleration*dt, velocity[i]-last_velocity[i]));
+            const desired_accel = velocity[i]-last_velocity[i] < 0 ? -this.max_acceleration : velocity[i]-last_velocity[i] === 0 ? 0 : this.max_acceleration;
+            this.allowed_acceleration[i] = last_allowed_acceleration[i] + Math.min(this.max_jerk * dt, Math.max(-this.max_jerk*dt, desired_accel-last_allowed_acceleration[i]));
+            this.velocity[i] = last_velocity[i] + Math.max(Math.min(velocity[i]-last_velocity[i], Math.abs(this.allowed_acceleration[i] * dt)), -Math.abs(this.allowed_acceleration[i] * dt));
         }
-        // console.log(this.velocity);
+
         this.position = [this.position[0] + (this.velocity[0]+this.velocity[1])/2*dt * Math.sin(this.theta), 
                          this.position[1] - (this.velocity[0]+this.velocity[1])/2*dt * Math.cos(this.theta)];
         this.theta += Math.atan((this.velocity[0]-this.velocity[1])/this.width*dt);

@@ -1,9 +1,9 @@
 import Session from "../objects/session"
 import FieldObjects from "../objects/field_objects";
 import SimulationManager from "../objects/simulation_manager";
+import { handle_showgrid } from "../objects/event_handler";
 
 function update_path(e) {
-    console.log(e.target.value);
     FieldObjects.path.update();
 }
 
@@ -16,6 +16,8 @@ export default function ControlsTab() {
                     <label className="option_text">Load session: </label>
                     <input type="file" id="sess_input" accept="application/JSON" className="file_input" onChange={Session.load_session}></input>
                     <br />
+                    <label className="option_text">Show grid: </label>
+                    <input type="checkbox" id="show_grid_input" className="option_input_checkbox" onChange={handle_showgrid}></input>
                     <p className="option_title"><b>Path generation</b></p>
                     <label className="option_text">Point density: </label>
                     <input type="range" min="5" max="30" id="point_density_input" defaultValue={20} onInput={update_path} onChange={update_path}/>

@@ -16,10 +16,10 @@ export default function FieldSettings() {
         <input type="checkbox" id="y_inverse_input" className="option_input_checkbox" onChange={OutputManager.update_output}></input>
         <p style={{ display: "inline-block" }}>inverse y</p>
         <br />
-
         <label className="option_text">Background image: </label>
         <input type="file" id="img_input" name="img_input" accept="image/*" className="file_input" onChange={set_background_img}></input>
         <button className="option_input" id="clear_img" style={{ width: "auto" }} onClick={clear_background_img}>clear image</button>
         <br />
+        <i>Note: you could only upload square images.</i>
     </>
 }

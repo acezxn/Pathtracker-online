@@ -44,7 +44,8 @@ class Session {
         const robot_length_input = document.getElementById("robot_length_input");
         const max_velocity_input = document.getElementById("max_velocity_input");
         const max_accel_input = document.getElementById("max_accel_input");
-    
+        const max_jerk_input = document.getElementById("max_jerk_input");
+
         // pure pursuit settings elements
         const lookahead_radius_input = document.getElementById("lookahead_radius_input");
         const kPT_input = document.getElementById("kPT_input");
@@ -82,6 +83,7 @@ class Session {
                     robot_length: robot_length_input.value,
                     max_velocity: max_velocity_input.value,
                     max_acceleration: max_accel_input.value,
+                    max_jerk: max_jerk_input.value,
                 },
                 pid_constants: {
                     kPT: kPT_input.value,
@@ -129,6 +131,7 @@ class Session {
         const robot_length_input = document.getElementById("robot_length_input");
         const max_velocity_input = document.getElementById("max_velocity_input");
         const max_accel_input = document.getElementById("max_accel_input");
+        const max_jerk_input = document.getElementById("max_jerk_input");
     
         // pure pursuit settings elements
         const lookahead_radius_input = document.getElementById("lookahead_radius_input");
@@ -165,7 +168,8 @@ class Session {
             robot_length_input.value = config.settings.robot_settings.robot_length;
             max_velocity_input.value = config.settings.robot_settings.max_velocity;
             max_accel_input.value = config.settings.robot_settings.max_acceleration;
-    
+            max_jerk_input.value = config.settings.robot_settings.max_jerk;
+
             // pure pursuit
             lookahead_radius_input.value = config.settings.pure_pursuit.lookahead_radius;
             kPT_input.value = config.settings.pid_constants.kPT;

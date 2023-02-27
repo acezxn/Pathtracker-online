@@ -24,6 +24,8 @@ const Stage = props => {
         let frameCount = 0;
         let animationFrameId;
 
+        const field_width_input = document.getElementById("field_width");
+        
         // color related settings elements
         const start_color_input = document.getElementById("start_color_input");
         const end_color_input = document.getElementById("end_color_input");
@@ -43,6 +45,9 @@ const Stage = props => {
                 then = performance.now();
                 frameCount++
                 settings = {
+                    
+                    fieldwidth: field_width_input.value,
+                    canvaswidth: canvas.width,
 
                     start_color: start_color_input.value,
                     end_color: end_color_input.value,

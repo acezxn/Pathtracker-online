@@ -8,6 +8,9 @@ class PurePursuit {
         this.mode = PurePursuit.pursuit_mode.pid;
         this.lookahead_radius = lookahead_radius;
         this.trackwidth = trackwidth;
+        this.max_progress_jump = 1;
+
+        this.progress = 0;
         // translational PID constants
         this.kPT = pid_constants.kPT;
         this.kIT = pid_constants.kIT;
@@ -31,6 +34,7 @@ class PurePursuit {
      * Reset stored errors
     */
     reset() {
+        this.progress = 0;
         this.prev_error_displacement = 0;
         this.prev_error_rotation = 0;
 
@@ -85,6 +89,9 @@ class PurePursuit {
         if (position.distance_to(this.path[this.path.length - 1]) < this.lookahead_radius) {
             return this.path[this.path.length - 1];
         }
+
+        this.progress = Math.min(Math.max(this.progress, this.closest(position)), Math.min(this.progress + this.max_progress_jump, this.path.length-1));
+        
         for (let i = 0; i < this.path.length; i++) {
             var current_point = this.path[i];
             if (i + 1 < this.path.length) {
@@ -92,9 +99,10 @@ class PurePursuit {
                 const current_dist = position.distance_to(current_point);
                 const next_dist = position.distance_to(next_point);
 
-                if (current_dist < this.lookahead_radius &&
-                    next_dist > this.lookahead_radius &&
-                    this.closest(position) <= i) {
+                if (current_dist <= this.lookahead_radius &&
+                    next_dist >= this.lookahead_radius &&
+                    this.progress <= i) {
+                    
                     // interpolation
                     var mid_point = new Waypoint(current_point.get_x(), current_point.get_y(), 0, 
                     (current_point.get_linvel() + next_point.get_linvel())/2, 0);
@@ -119,7 +127,7 @@ class PurePursuit {
                 }
             }
         }
-        return this.path[this.closest(position)];
+        return this.path[this.progress];
     }
 
     /**

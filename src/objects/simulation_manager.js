@@ -19,6 +19,7 @@ class SimulationManager {
     static robot_performance = {
         max_velocity: 0,
         max_acceleration: 0,
+        max_jerk: 0,
     }
     static pid_constants = {
         kPT: 300,
@@ -45,6 +46,7 @@ class SimulationManager {
         const robot_length_input = document.getElementById("robot_length_input");
         const max_velocity_input = document.getElementById("max_velocity_input");
         const max_accel_input = document.getElementById("max_accel_input");
+        const max_jerk_input = document.getElementById("max_jerk_input");
     
         const lookahead_radius_input = document.getElementById("lookahead_radius_input");
         const kPT_input = document.getElementById("kPT_input");
@@ -63,6 +65,7 @@ class SimulationManager {
         SimulationManager.robot_performance = {
             max_velocity: Utils.meters_to_pixel(+max_velocity_input.value, +field_width_input.value, canvas.width),
             max_acceleration: Utils.meters_to_pixel(+max_accel_input.value, +field_width_input.value, canvas.width),
+            max_jerk: Utils.meters_to_pixel(+max_jerk_input.value, +field_width_input.value, canvas.width),
         }
     
         SimulationManager.pid_constants = {
