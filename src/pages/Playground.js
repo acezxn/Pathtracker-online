@@ -59,7 +59,7 @@ const Playground = () => {
                 <p style={{ display: "inline-block" }}>y</p>
                 <input type="text" id="output_suffix" className="option_input_middle" defaultValue={")"} onChange={OutputManager.update_output}></input>
                 <br />
-                <textarea rows="5" cols="88" id="output_textarea" className="textarea">
+                <textarea rows="5" cols="88" id="output_textarea" spellCheck="false" className="textarea">
                 </textarea>
             </div>
         </>

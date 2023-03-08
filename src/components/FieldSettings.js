@@ -7,6 +7,9 @@ export default function FieldSettings() {
         <label className="option_text">Field width (meters): </label>
         <input type="text" id="field_width" name="field_width" className="option_input" defaultValue={4} onInput={OutputManager.update_output}></input>
         <br />
+        <label className="option_text">Coordinates per dimension: </label>
+        <input type="text" id="coord_per_dimension" name="coord_per_dimension" className="option_input" defaultValue={100} onInput={OutputManager.update_output}></input>
+        <br />
 
         <label className="option_text">Field origin (meters): </label>
         <p style={{ display: "inline-block" }}>x = </p>

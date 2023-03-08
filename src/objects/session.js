@@ -28,6 +28,7 @@ class Session {
         // stage related settings elements
         const canvas = document.getElementById("Stage");
         const field_width_input = document.getElementById("field_width");
+        const coord_per_dimension_input = document.getElementById("coord_per_dimension");
         const x_origin_input = document.getElementById("x_origin_input");
         const y_origin_input = document.getElementById("y_origin_input");
         const y_inverse_input = document.getElementById("y_inverse_input");
@@ -67,6 +68,7 @@ class Session {
             settings: {
                 field_related: {
                     fieldwidth: field_width_input.value,
+                    coord_per_dimeinsion: coord_per_dimension_input.value,
                     field_origin_x: x_origin_input.value,
                     field_origin_y: y_origin_input.value,
                     inverse_y: y_inverse_input.checked,
@@ -115,6 +117,7 @@ class Session {
         // stage related settings elements
         const canvas = document.getElementById("Stage");
         const field_width_input = document.getElementById("field_width");
+        const coord_per_dimension_input = document.getElementById("coord_per_dimension");
         const x_origin_input = document.getElementById("x_origin_input");
         const y_origin_input = document.getElementById("y_origin_input");
         const y_inverse_input = document.getElementById("y_inverse_input");
@@ -151,6 +154,8 @@ class Session {
     
             // field related settings
             field_width_input.value = config.settings.field_related.fieldwidth;
+            coord_per_dimension_input.value = config.settings.field_related.coord_per_dimeinsion;
+
             x_origin_input.value = config.settings.field_related.field_origin_x;
             y_origin_input.value = config.settings.field_related.field_origin_y;
             y_inverse_input.checked = config.settings.field_related.inverse_y;
