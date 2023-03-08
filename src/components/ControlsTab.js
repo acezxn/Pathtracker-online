@@ -5,6 +5,7 @@ import { handle_showgrid } from "../objects/event_handler";
 
 function update_path(e) {
     FieldObjects.path.update();
+    FieldObjects.path.settings.point_density = e.target.value;
 }
 
 export default function ControlsTab() {
@@ -20,7 +21,7 @@ export default function ControlsTab() {
                     <input type="checkbox" id="show_grid_input" className="option_input_checkbox" onChange={handle_showgrid}></input>
                     <p className="option_title"><b>Path generation</b></p>
                     <label className="option_text">Point density: </label>
-                    <input type="range" min="5" max="30" id="point_density_input" defaultValue={20} onInput={update_path} onChange={update_path}/>
+                    <input type="text" id="point_density_input" className="option_input" defaultValue={20} onInput={update_path} onChange={update_path}/>
                     <br />
                     <br />
                     <button className="option_input" id="simulate_btn" style={{ width: "auto" }} onClick={SimulationManager.toggle_simulation}>Simulate</button>
