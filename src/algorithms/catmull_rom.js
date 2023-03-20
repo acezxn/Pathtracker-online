@@ -8,22 +8,22 @@ class CatmullRom {
     }
 
     get_spline_point(t) {
-        var p1 = Math.floor(t) + 1;
-        var p2 = p1 + 1;
-        var p3 = p2 + 1;
-        var p0 = p1 - 1;
+        let p1 = Math.floor(t) + 1;
+        let p2 = p1 + 1;
+        let p3 = p2 + 1;
+        let p0 = p1 - 1;
 
         t = t - Math.floor(t);
 
-        var tt = t * t;
-        var ttt = tt * t;
+        let tt = t * t;
+        let ttt = tt * t;
 
-        var q1 = -ttt + 2.0 * tt - t;
-        var q2 = 3.0 * ttt - 5.0 * tt + 2.0;
-        var q3 = -3.0 * ttt + 4.0 * tt + t;
-        var q4 = ttt - tt;
+        let q1 = -ttt + 2.0 * tt - t;
+        let q2 = 3.0 * ttt - 5.0 * tt + 2.0;
+        let q3 = -3.0 * ttt + 4.0 * tt + t;
+        let q4 = ttt - tt;
 
-        var tx, ty;
+        let tx, ty;
         try {
             tx = 0.5 * (this.ctlpoints[p0].x * q1 + this.ctlpoints[p1].x * q2 + this.ctlpoints[p2].x * q3 + this.ctlpoints[p3].x * q4);
             ty = 0.5 * (this.ctlpoints[p0].y * q1 + this.ctlpoints[p1].y * q2 + this.ctlpoints[p2].y * q3 + this.ctlpoints[p3].y * q4);

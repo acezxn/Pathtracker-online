@@ -206,6 +206,7 @@ li a:hover {
 /* stage related */
 canvas {
   border: 1px solid #a1a1a1;
+  border-radius: 5px;
   width: 50vw;
   height: auto;
 }
@@ -232,6 +233,7 @@ canvas {
   overflow-y: auto;
   text-align: justify;
   border: 0.1vw solid #A1A1A1;
+  border-radius: 5px;
 }
 
 .controls_tab {
