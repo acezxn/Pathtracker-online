@@ -27,6 +27,8 @@ Online robot path planning tool with simulation capabilties
 - The pursuit algorithm can be chosen in the ```Pure pursuit``` section
 - Pressing the ```Simulate``` button to start the simulation
 
+For the explanation of more functionalities, see [Detailed Guide](https://github.com/acezxn/Pathtracker-online/wiki/Detailed-Guide) for more information.
+
 ## Installation
 
 Not required! But if you want to run this application locally, run this in your terminal
