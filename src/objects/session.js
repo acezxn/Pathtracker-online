@@ -39,6 +39,7 @@ class Session {
         const ctlpoint_color_input = document.getElementById("ctlpoint_color_input");
         const ctlpoint_open_color_input = document.getElementById("ctlpoint_open_color_input");
         const robot_color_input = document.getElementById("robot_color_input");
+        const trackvel_color_input = document.getElementById("trackvel_color_input");
     
         // robot related settings elements
         const robot_width_input = document.getElementById("robot_width_input");
@@ -79,6 +80,7 @@ class Session {
                     ctlpoint_color: ctlpoint_color_input.value,
                     open_ctlpoint_color: ctlpoint_open_color_input.value,
                     robot_color: robot_color_input.value,
+                    velocity_color: trackvel_color_input.value,
                 },
                 robot_settings: {
                     robot_width: robot_width_input.value,
@@ -128,6 +130,7 @@ class Session {
         const ctlpoint_color_input = document.getElementById("ctlpoint_color_input");
         const ctlpoint_open_color_input = document.getElementById("ctlpoint_open_color_input");
         const robot_color_input = document.getElementById("robot_color_input");
+        const trackvel_color_input = document.getElementById("trackvel_color_input");
     
         // robot related settings elements
         const robot_width_input = document.getElementById("robot_width_input");
@@ -167,6 +170,7 @@ class Session {
             ctlpoint_color_input.value = config.settings.color_settings.ctlpoint_color;
             ctlpoint_open_color_input.value = config.settings.color_settings.open_ctlpoint_color;
             robot_color_input.value = config.settings.color_settings.robot_color;
+            trackvel_color_input.value = config.settings.color_settings.velocity_color;
     
             // robot settings
             robot_width_input.value = config.settings.robot_settings.robot_width;

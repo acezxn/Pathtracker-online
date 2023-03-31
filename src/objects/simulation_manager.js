@@ -42,6 +42,7 @@ class SimulationManager {
         const canvas = document.getElementById("Stage");
         const field_width_input = document.getElementById("field_width");
         const robot_color_input = document.getElementById("robot_color_input");
+        const trackvel_color_input = document.getElementById("trackvel_color_input");
         const robot_width_input = document.getElementById("robot_width_input");
         const robot_length_input = document.getElementById("robot_length_input");
         const max_velocity_input = document.getElementById("max_velocity_input");
@@ -60,6 +61,7 @@ class SimulationManager {
             width: Utils.meters_to_pixel(+robot_width_input.value, +field_width_input.value, canvas.width),
             length: Utils.meters_to_pixel(+robot_length_input.value, +field_width_input.value, canvas.width),
             color: robot_color_input.value,
+            velocity_color: trackvel_color_input.value,
         }
     
         SimulationManager.robot_performance = {

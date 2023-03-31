@@ -26,8 +26,6 @@ class Box extends DrawableObject {
     }
     rotate_by_angle(x, y, theta) {
         theta = theta * Math.PI / 180;
-        // return [Math.cos(theta) * (x-this.x-this.center_x_offset) - Math.sin(theta) * (y-this.y-this.center_y_offset) + this.x + this.center_x_offset, 
-        //     Math.sin(theta) * (x-this.x-this.center_x_offset) + Math.cos(theta) * (y-this.y-this.center_y_offset) + this.y + this.center_y_offset];
         return [Math.cos(theta) * (x-this.x) - Math.sin(theta) * (y-this.y) + this.x, Math.sin(theta) * (x-this.x) + Math.cos(theta) * (y-this.y) + this.y];
     }
     render(ctx, settings) {

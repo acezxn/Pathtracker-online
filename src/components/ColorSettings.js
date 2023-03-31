@@ -19,5 +19,9 @@ export default function ColorSettings() {
 
         <label className="option_text">Robot color: </label>
         <input type="color" id="robot_color_input" defaultValue={"#DDDD00"} />
+        <br />
+
+        <label className="option_text">Track velocity color: </label>
+        <input type="color" id="trackvel_color_input" defaultValue={"#FF0000"} />
     </>
 }
