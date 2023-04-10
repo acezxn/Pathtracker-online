@@ -1,7 +1,7 @@
-import Session from "../objects/session"
-import FieldObjects from "../objects/field_objects";
-import SimulationManager from "../objects/simulation_manager";
-import { handle_showgrid } from "../objects/event_handler";
+import Session from "../../objects/session";
+import FieldObjects from "../../objects/field_objects";
+import SimulationManager from "../../objects/simulation_manager";
+import { handle_showgrid } from "../../objects/event_handler";
 
 function update_path(e) {
     FieldObjects.path.update();

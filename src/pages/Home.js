@@ -6,7 +6,7 @@ const Home = () => {
             <h1>Pathtracker Online</h1>
             <p style={{textAlign: "center"}}>A tool meant for robot path planning and path following simulation</p>
             <br />
-            <Link to="/playground" className="link" style={{fontSize: "max(3vw, 20px)"}}>Try now</Link>
+            <Link to="/path-follow-simulator" className="link" style={{fontSize: "max(3vw, 20px)"}}>Try now</Link>
             <br />
             <br />
             <br />

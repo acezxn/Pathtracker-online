@@ -2,6 +2,7 @@ import Utils from "../utils";
 import PurePursuit from "../algorithms/pure_pursuit";
 import FieldObjects from "./field_objects";
 import Robot from "./drawable_objects/robot";
+import RobotBehavior from "./robot_behavior";
 
 class SimulationManager {
     static simulating = false;
@@ -117,8 +118,8 @@ class SimulationManager {
                     y: FieldObjects.path.fullpath[0].get_y(),
                     theta: orientation,
                 }
-    
-                var robot = new Robot(SimulationManager.robot_position, SimulationManager.robot_appearance, SimulationManager.robot_performance, SimulationManager.pid_constants, SimulationManager.pursuit_settings);
+                var behavior = new RobotBehavior(RobotBehavior.actions.pursuit, SimulationManager.pursuit_settings);
+                var robot = new Robot(SimulationManager.robot_position, SimulationManager.robot_appearance, SimulationManager.robot_performance, SimulationManager.pid_constants, behavior);
                 FieldObjects.objects.push(robot)
             } else {
                 SimulationManager.simulating = false;

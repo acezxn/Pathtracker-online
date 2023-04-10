@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
 import About from './pages/About';
-import Playground from "./pages/Playground";
+import PathFollowSimulator from "./pages/PathFollowSimulator";
 import NoPage from "./pages/NoPage";
 import Help from './pages/Help';
 
@@ -11,7 +11,7 @@ function App() {
       <Route exact path="/" element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="help" element={<Help />} />
-      <Route path="playground" element={<Playground />} />
+      <Route path="path-follow-simulator" element={<PathFollowSimulator />} />
       <Route path="*" element={<NoPage />} />
     </Routes>
   );

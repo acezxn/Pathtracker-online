@@ -3,9 +3,10 @@ import Point from "./point.js";
 import PurePursuit from "../../algorithms/pure_pursuit.js";
 import FieldObjects from "../field_objects.js";
 import SimulationManager from "../simulation_manager.js";
+import RobotBehavior from "../robot_behavior.js";
 
 class Robot {
-    constructor({x, y, theta}, {width, length, color, velocity_color}, {max_velocity, max_acceleration, max_jerk}, {kPT, kIT, kDT, kPR, kIR, kDR}, {lookahead_radius, pursuit_mode}) {
+    constructor({x, y, theta}, {width, length, color, velocity_color}, {max_velocity, max_acceleration, max_jerk}, {kPT, kIT, kDT, kPR, kIR, kDR}, behavior) {
         this.position = [x, y];
         this.velocity = [0, 0];
         this.allowed_acceleration = [0, 0];
@@ -16,9 +17,10 @@ class Robot {
         this.color = color;
         this.velocity_color = velocity_color;
         this.box = new Box(x, y, theta, width, length, color);
-        this.lookahead_radius = lookahead_radius;
-        this.pursuit = new PurePursuit(lookahead_radius, width, {kPT, kIT, kDT, kPR, kIR, kDR});
-        this.pursuit.set_mode(pursuit_mode);
+        this.behavior = behavior;
+        this.lookahead_radius = behavior.perform_details.lookahead_radius;
+        this.pursuit = new PurePursuit(this.lookahead_radius, width, {kPT, kIT, kDT, kPR, kIR, kDR});
+        this.pursuit.set_mode(behavior.perform_details.pursuit_mode);
         this.max_velocity = max_velocity;
         this.max_acceleration = max_acceleration;
     }
@@ -92,7 +94,13 @@ class Robot {
     }
 
     render(ctx, settings) {
-        const finished = this.follow_path(FieldObjects.path.fullpath, settings.dt);
+        var finished;
+        if (this.behavior.perform_action === RobotBehavior.actions.pursuit) {
+            finished = this.follow_path(FieldObjects.path.fullpath, settings.dt);
+        } else {
+            finished = true;
+        }
+        
         if (finished) {
             SimulationManager.toggle_simulation();
             return;

@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import FieldObjects from '../objects/field_objects'
 import { handle_mousedown, handle_mouseup, handle_mousemove, handle_keydown, handle_ctxmenu } from '../objects/event_handler'
-import OutputManager from '../objects/output_manager';
 
 var settings = {};
 var target_fps = 60;
@@ -18,7 +17,6 @@ const Stage = props => {
     }
 
     useEffect(() => {
-        OutputManager.update_output();
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
         let frameCount = 0;
@@ -69,7 +67,7 @@ const Stage = props => {
         }
     }, [draw])
 
-    return <canvas ref={canvasRef} {...props} id="Stage" width={1000} height={1000} onMouseDown={handle_mousedown} onMouseUp={handle_mouseup} onMouseMove={handle_mousemove}/>
+    return <canvas ref={canvasRef} {...props} id="Stage" width={1000} height={1000} style={{width: "50vw"}} onMouseDown={handle_mousedown} onMouseUp={handle_mouseup} onMouseMove={handle_mousemove}/>
 }
 
 export default Stage

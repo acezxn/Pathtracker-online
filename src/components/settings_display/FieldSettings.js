@@ -1,5 +1,5 @@
-import OutputManager from "../objects/output_manager"
-import { set_background_img, clear_background_img } from "../objects/event_handler";
+import OutputManager from "../../objects/output_manager"
+import { set_background_img, clear_background_img } from "../../objects/event_handler";
 
 export default function FieldSettings() {
     return <>

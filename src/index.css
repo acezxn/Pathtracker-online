@@ -207,7 +207,7 @@ li a:hover {
 canvas {
   border: 1px solid #a1a1a1;
   border-radius: 5px;
-  width: 50vw;
+  /* width: 50vw; */
   height: auto;
 }
 
