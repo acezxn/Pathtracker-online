@@ -4,7 +4,6 @@ import Utils from "../utils";
 class CatmullRom {
     constructor(ctlpoints) {
         this.ctlpoints = ctlpoints;
-        this.length = 0;
     }
 
     get_spline_point(t) {
@@ -42,7 +41,6 @@ class CatmullRom {
         const canvas = document.getElementById("Stage");
         const velocity = Utils.meters_to_pixel(+max_velocity_input.value, +field_width_input.value, canvas.width);
         var path = []
-        this.length = 0;
         for (var t = 0; t <= this.ctlpoints.length - 3.0; t += progress) {
             var coordinate = this.get_spline_point(t);
             if (t - progress >= 0) {
@@ -50,7 +48,6 @@ class CatmullRom {
                 var x_dist = coordinate.tx - prev_coordinate.tx;
                 var y_dist = coordinate.ty - prev_coordinate.ty;
                 var dist = Math.sqrt(Math.pow(x_dist, 2) + Math.pow(y_dist, 2));
-                this.length += dist;
             }
             var point = new Waypoint(coordinate.tx, coordinate.ty, 0, velocity, 0, 3, "#000000");
             path.push(point);

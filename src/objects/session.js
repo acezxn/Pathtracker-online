@@ -25,6 +25,7 @@ class Session {
      * Download current session
     */
     static download_sess() {
+        const curve_type_input = document.getElementById("curve_type_input");
         // stage related settings elements
         const canvas = document.getElementById("Stage");
         const field_width_input = document.getElementById("field_width");
@@ -67,6 +68,9 @@ class Session {
     
         const config = {
             settings: {
+                path_generation: {
+                    curve_type: curve_type_input.value,
+                },
                 field_related: {
                     fieldwidth: field_width_input.value,
                     coord_per_dimeinsion: coord_per_dimension_input.value,
@@ -116,6 +120,7 @@ class Session {
      * Load uploaded session
     */
     static load_session(e) {
+        const curve_type_input = document.getElementById("curve_type_input");
         // stage related settings elements
         const canvas = document.getElementById("Stage");
         const field_width_input = document.getElementById("field_width");
@@ -154,6 +159,8 @@ class Session {
         fr.onload = function (e) {
             var contents = e.target.result;
             const config = JSON.parse(contents);
+
+            curve_type_input.value = config.settings.path_generation.curve_type;
     
             // field related settings
             field_width_input.value = config.settings.field_related.fieldwidth;
@@ -188,7 +195,13 @@ class Session {
             kIR_input.value = config.settings.pid_constants.kIR;
             kDR_input.value = config.settings.pid_constants.kDR;
     
-    
+            if (curve_type_input.value === "catmull_rom") {
+                FieldObjects.path.set_algorithm(curve_type_input.value);
+            }
+            else if (curve_type_input.value === "cubic_bezier") {
+                FieldObjects.path.set_algorithm(curve_type_input.value);
+            }
+
             // load control points
             const ctlpoint_data = config.data.ctlpoints;
             FieldObjects.path.ctlpoints = []

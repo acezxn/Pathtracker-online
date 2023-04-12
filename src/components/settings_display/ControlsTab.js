@@ -1,7 +1,7 @@
 import Session from "../../objects/session";
 import FieldObjects from "../../objects/field_objects";
 import SimulationManager from "../../objects/simulation_manager";
-import { handle_showgrid } from "../../objects/event_handler";
+import { clear_path, handle_pathalgo_change, handle_showgrid } from "../../objects/event_handler";
 
 function update_path(e) {
     FieldObjects.path.update();
@@ -19,12 +19,19 @@ export default function ControlsTab() {
                     <br />
                     <label className="option_text">Show grid: </label>
                     <input type="checkbox" id="show_grid_input" className="option_input_checkbox" onChange={handle_showgrid}></input>
-                    <p className="option_title"><b>Path generation</b></p>
+                    <p className="option_title"><b>Path generation</b></p>                   
+                    <label className="option_text">Curve type: </label>
+                    <select id="curve_type_input" style={{width: "10vw", fontSize: "max(1.5vw, 10px)"}} onChange={handle_pathalgo_change}>
+                        <option value="catmull_rom">Catmull rom spline</option>
+                        <option value="cubic_bezier">Cubic Bezier curve</option>
+                    </select>
+                    <button id="clear_path_btn" style={{fontSize: "max(1.5vw, 10px)"}} onClick={clear_path}>Clear path</button>
+                    <br />
                     <label className="option_text">Point density: </label>
-                    <input type="range" min="5" max="30" id="point_density_input" defaultValue={20} onInput={update_path} onChange={update_path}/>
+                    <input type="range" min="5" max="50" id="point_density_input" defaultValue={20} onInput={update_path} onChange={update_path}/>
                     <br />
                     <br />
-                    <button className="option_input" id="simulate_btn" style={{ width: "auto" }} onClick={SimulationManager.toggle_simulation}>Simulate</button>
+                    <button className="option_input" id="simulate_btn" style={{ width: "auto", padding: "0.3vw" }} onClick={SimulationManager.toggle_simulation}>Simulate</button>
                 </div>
             </div>
         </div>

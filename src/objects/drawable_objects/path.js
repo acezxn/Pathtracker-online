@@ -1,24 +1,42 @@
-import OutputManager from "../output_manager";
 import DrawableObject from "./drawable_object";
 import CatmullRom from "../../algorithms/catmull_rom";
-
+import CubicBezier from "../../algorithms/cubic_bezier";
+import OutputManager from "../output_manager";
 class Path extends DrawableObject {
     constructor() {
         super();
         this.ctlpoints = [];
         this.fullpath = [];
         this.settings = {};
+        this.algorithm = "catmull_rom";
+    }
+    reset() {
+        this.ctlpoints = [];
+        this.fullpath = [];
+        this.settings = {};
+        this.update();
+    }
+    set_algorithm(algo) {
+        this.algorithm = algo;
+        console.log("Switched to " + this.algorithm);
     }
     update() {
-        var catmull = new CatmullRom(this.ctlpoints);
-        this.fullpath = catmull.get_full_path(1 / (+this.settings.point_density));
+        var path_generator;
+        if (this.algorithm === "catmull_rom") {
+            path_generator = new CatmullRom(this.ctlpoints);
+        }
+        if (this.algorithm === "cubic_bezier") {
+            path_generator = new CubicBezier(this.ctlpoints);
+        }
+
+        this.fullpath = path_generator.get_full_path(1 / (+this.settings.point_density));
         OutputManager.update_output();
     }
-    render(ctx, settings) {
-        this.settings = settings;
+
+    render_fullpath(ctx) {
         // process color inputs
-        const start_color = settings.start_color;
-        const end_color = settings.end_color;
+        const start_color = this.settings.start_color;
+        const end_color = this.settings.end_color;
         const red_value_start = parseInt(start_color.substr(1, 2), 16);
         const green_value_start = parseInt(start_color.substr(3, 2), 16);
         const blue_value_start = parseInt(start_color.substr(5, 2), 16);
@@ -50,30 +68,67 @@ class Path extends DrawableObject {
                 ctx.stroke();
             }
         }
+    }
 
+    render_ctlpoints(ctx) {
         // draw control points
         for (let i = 0; i < this.ctlpoints.length; i++) {
-            if (i === 0 || i === this.ctlpoints.length - 1) {
-                this.ctlpoints[i].set_color(settings.ctlpoint_open_color);
-            } else {
-                this.ctlpoints[i].set_color(settings.ctlpoint_color);
+
+            switch (this.algorithm) {
+                case "catmull_rom":
+                    if (i === 0 || i === this.ctlpoints.length - 1) {
+                        this.ctlpoints[i].set_color(this.settings.ctlpoint_open_color);
+                    } else {
+                        this.ctlpoints[i].set_color(this.settings.ctlpoint_color);
+                    }
+                    if (i === 0 && i + 1 < this.ctlpoints.length) {
+                        ctx.beginPath();
+                        ctx.moveTo(this.ctlpoints[i].get_x(), this.ctlpoints[i].get_y());
+                        ctx.lineTo(this.ctlpoints[i + 1].get_x(), this.ctlpoints[i + 1].get_y());
+                        ctx.strokeStyle = this.settings.ctlpoint_open_color;
+                        ctx.stroke();
+                    }
+                    if (i + 1 === this.ctlpoints.length - 1) {
+                        ctx.beginPath();
+                        ctx.moveTo(this.ctlpoints[i].get_x(), this.ctlpoints[i].get_y());
+                        ctx.lineTo(this.ctlpoints[i + 1].get_x(), this.ctlpoints[i + 1].get_y());
+                        ctx.strokeStyle = this.settings.ctlpoint_open_color
+                        ctx.stroke();
+                    }
+                    break;
+                case "cubic_bezier":
+                    if (i % 3 === 1) {
+                        this.ctlpoints[i].set_color(this.settings.ctlpoint_open_color);
+                        ctx.beginPath();
+                        ctx.moveTo(this.ctlpoints[i].get_x(), this.ctlpoints[i].get_y());
+                        ctx.lineTo(this.ctlpoints[i - 1].get_x(), this.ctlpoints[i - 1].get_y());
+                        ctx.strokeStyle = this.settings.ctlpoint_open_color;
+                        ctx.stroke();
+                    }
+                    else if (i % 3 === 2) {
+                        this.ctlpoints[i].set_color(this.settings.ctlpoint_open_color);
+                        if (i + 1 < this.ctlpoints.length) {
+                            ctx.beginPath();
+                            ctx.moveTo(this.ctlpoints[i].get_x(), this.ctlpoints[i].get_y());
+                            ctx.lineTo(this.ctlpoints[i + 1].get_x(), this.ctlpoints[i + 1].get_y());
+                            ctx.strokeStyle = this.settings.ctlpoint_open_color;
+                            ctx.stroke();
+                        }
+                    }
+                    else {
+                        this.ctlpoints[i].set_color(this.settings.ctlpoint_color);
+                    }
+                    break;
             }
-            if (i === 0 && i + 1 < this.ctlpoints.length) {
-                ctx.beginPath();
-                ctx.moveTo(this.ctlpoints[i].get_x(), this.ctlpoints[i].get_y());
-                ctx.lineTo(this.ctlpoints[i + 1].get_x(), this.ctlpoints[i + 1].get_y());
-                ctx.strokeStyle = settings.ctlpoint_open_color;
-                ctx.stroke();
-            }
-            if (i + 1 === this.ctlpoints.length - 1) {
-                ctx.beginPath();
-                ctx.moveTo(this.ctlpoints[i].get_x(), this.ctlpoints[i].get_y());
-                ctx.lineTo(this.ctlpoints[i + 1].get_x(), this.ctlpoints[i + 1].get_y());
-                ctx.strokeStyle = settings.ctlpoint_open_color
-                ctx.stroke();
-            }
-            this.ctlpoints[i].render(ctx, settings);
+            this.ctlpoints[i].render(ctx, this.settings);
         }
+    }
+    render(ctx, settings) {
+        this.settings = settings;
+
+        this.render_fullpath(ctx);
+        this.render_ctlpoints(ctx);
+
     }
 }
 
