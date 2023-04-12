@@ -7,8 +7,7 @@ const About = () => {
             <h2>About this tool</h2>
             <h3>Path generation</h3>
             <p>
-                To generate paths, this tool uses catmull-rom spline curves to
-                allow the path to pass through every intermediate control points.
+                This tool integrated catmull-rom spline curves and cubic Bezier curves for smooth path drawing.
 
                 <br />
                 <br />
@@ -22,37 +21,48 @@ const About = () => {
                     https://www.youtube.com/watch?v=9_aJGUTePYo
                 </a>
                 <br />
+                <br />
+                Information about cubic Bezier curve:
+                <br />
+                <a href="https://javascript.info/bezier-curve">
+                    https://javascript.info/bezier-curve
+                </a>
+                <br />
+                <a href="https://www.geeksforgeeks.org/cubic-bezier-curve-implementation-in-c/">
+                    https://www.geeksforgeeks.org/cubic-bezier-curve-implementation-in-c/
+                </a>
+                <br />
             </p>
             <h3>Path following</h3>
             <p>
-                This tool uses a modified version of the original algorithm to find the 
+                This tool uses a modified version of the original algorithm to find the
                 lookahead point due to these assumptions:
                 <br />
-                </p>
-                <ol>
-                    <li>
+            </p>
+            <ol>
+                <li>
                     A path consists of many points
-                    </li>
-                    <li>
+                </li>
+                <li>
                     The path may overlap with each other
-                    </li>
-                </ol>
-                <p>
-                For information about the original algorithm, see the resource below about basic pure pursuit. 
+                </li>
+            </ol>
+            <p>
+                For information about the original algorithm, see the resource below about basic pure pursuit.
                 <br />
                 <br />
                 <br />
-                To follow a lookahead point, this tool uses two variations of pure pursuit to follow paths: curvature 
+                To follow a lookahead point, this tool uses two variations of pure pursuit to follow paths: curvature
                 based and PID based.
                 <br />
                 <br />
-                For curvature based pure pursuit (basic pure pursuit), the curvature 
-                to pursuit a lookahead point is calculated, then the left and right velocities 
+                For curvature based pure pursuit (basic pure pursuit), the curvature
+                to pursuit a lookahead point is calculated, then the left and right velocities
                 are determined based on that curvature.
 
                 <br />
                 <br />
-                For PID based pure pursuit, position and rotation errors are measured and feeded 
+                For PID based pure pursuit, position and rotation errors are measured and feeded
                 to a PID controller to control left and right velocities.
                 <br />
                 <br />
@@ -63,7 +73,7 @@ const About = () => {
                 </a>
                 <br />
                 <a href="https://wiki.purduesigbots.com/software/control-algorithms/basic-pure-pursuit">
-                https://wiki.purduesigbots.com/software/control-algorithms/basic-pure-pursuit
+                    https://wiki.purduesigbots.com/software/control-algorithms/basic-pure-pursuit
                 </a>
                 <br />
             </p>
