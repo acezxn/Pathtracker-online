@@ -18,7 +18,7 @@ export default function RobotSettings() {
         <br />
 
         <label className="option_text">Max jerk (m/s^3): </label>
-        <input type="text" id="max_jerk_input" className="option_input" defaultValue={200}></input>
+        <input type="text" id="max_jerk_input" className="option_input" defaultValue={70}></input>
         <br />
         <br />
 
@@ -28,7 +28,7 @@ export default function RobotSettings() {
         <br />
 
         <label className="option_text">translational P gain: </label>
-        <input type="text" id="kPT_input" className="option_input" defaultValue={300}></input>
+        <input type="text" id="kPT_input" className="option_input" defaultValue={400}></input>
         <br />
 
         <label className="option_text">translational I gain: </label>
@@ -36,11 +36,11 @@ export default function RobotSettings() {
         <br />
 
         <label className="option_text">translational D gain: </label>
-        <input type="text" id="kDT_input" className="option_input" defaultValue={0}></input>
+        <input type="text" id="kDT_input" className="option_input" defaultValue={100}></input>
         <br />
 
         <label className="option_text">rotational P gain: </label>
-        <input type="text" id="kPR_input" className="option_input" defaultValue={300}></input>
+        <input type="text" id="kPR_input" className="option_input" defaultValue={400}></input>
         <br />
 
         <label className="option_text">rotational I gain: </label>
@@ -48,7 +48,7 @@ export default function RobotSettings() {
         <br />
 
         <label className="option_text">rotational D gain: </label>
-        <input type="text" id="kDR_input" className="option_input" defaultValue={0}></input>
+        <input type="text" id="kDR_input" className="option_input" defaultValue={100}></input>
         <br />
     </>
 }

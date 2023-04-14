@@ -8,7 +8,7 @@ class PurePursuit {
         this.mode = PurePursuit.pursuit_mode.pid;
         this.lookahead_radius = lookahead_radius;
         this.trackwidth = trackwidth;
-        this.max_progress_jump = 1;
+        this.max_progress_jump = 2;
 
         this.progress = 0;
         // translational PID constants
