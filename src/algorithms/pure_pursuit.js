@@ -179,14 +179,14 @@ class PurePursuit {
                 this.prev_error_rotation = error_rotation;
                 break;
             case PurePursuit.pursuit_mode.curvature:
-                const curvature = 2 * lookahead.get_x() / this.lookahead_radius;
+                const curvature = 2 * lookahead.get_x() / (this.lookahead_radius**2);
+                
                 forward = lookahead.get_linvel(); // get linear velocity
-                rotation = (forward / 20) * curvature * this.trackwidth / 2;
+                rotation = forward * curvature * this.trackwidth / 2;
                 break;
             default:
                 console.log("PurePursuit: invalid pursuit mode");
         }
-
 
         return reverse ? [-(forward + rotation), -(forward - rotation)] : [forward + rotation, forward - rotation];
     }

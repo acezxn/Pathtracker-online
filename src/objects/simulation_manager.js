@@ -111,16 +111,16 @@ class SimulationManager {
         if (SimulationManager.simulating) {
             simulate_btn.innerHTML = "Stop";
             if (FieldObjects.path.fullpath.length > 1) { // path exists
-                const orientation = Utils.format_angle(90 + Math.atan2(FieldObjects.path.fullpath[1].get_y() - FieldObjects.path.fullpath[0].get_y(), FieldObjects.path.fullpath[1].get_x() - FieldObjects.path.fullpath[0].get_x()) * 180 / Math.PI);
+                let orientation = Utils.format_angle(90 + Math.atan2(FieldObjects.path.fullpath[1].get_y() - FieldObjects.path.fullpath[0].get_y(), FieldObjects.path.fullpath[1].get_x() - FieldObjects.path.fullpath[0].get_x()) * 180 / Math.PI);
                 SimulationManager.update_robot_config();
                 SimulationManager.robot_position = {
                     x: FieldObjects.path.fullpath[0].get_x(),
                     y: FieldObjects.path.fullpath[0].get_y(),
                     theta: orientation,
                 }
-                var behavior = new RobotBehavior(RobotBehavior.actions.pursuit, SimulationManager.pursuit_settings);
+                let behavior = new RobotBehavior(RobotBehavior.actions.pursuit, SimulationManager.pursuit_settings);
                 var robot = new Robot(SimulationManager.robot_position, SimulationManager.robot_appearance, SimulationManager.robot_performance, SimulationManager.pid_constants, behavior);
-                FieldObjects.objects.push(robot)
+                FieldObjects.objects.push(robot);
             } else {
                 SimulationManager.simulating = false;
                 simulate_btn.innerHTML = "Simulate";
