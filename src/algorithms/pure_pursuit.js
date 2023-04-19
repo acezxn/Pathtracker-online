@@ -179,7 +179,7 @@ class PurePursuit {
                 this.prev_error_rotation = error_rotation;
                 break;
             case PurePursuit.pursuit_mode.curvature:
-                const curvature = 2 * lookahead.get_x() / (this.lookahead_radius**2);
+                const curvature = 2 * lookahead.get_x() / (lookahead.get_x()**2 + lookahead.get_y()**2);
                 
                 forward = lookahead.get_linvel(); // get linear velocity
                 rotation = forward * curvature * this.trackwidth / 2;
