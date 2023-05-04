@@ -1,53 +1,25 @@
-import { useEffect } from "react";
 import NavBar from "../components/NavBar";
 import GitHubButton from 'react-github-btn'
+import Announcement from "../components/Announcement";
 
 
 
 const About = () => {
-    useEffect(() => {
-        let announce_msg = document.getElementById("announce_msg");
-        let end_position = announce_msg.offsetWidth;
-        let start_position = announce_msg.parentElement.offsetWidth;
-        let flag = 0;
-
-        setInterval(() => {
-            announce_msg.style.marginLeft = --flag + "px";
-
-            if (end_position === -flag) {
-                flag = start_position;
-            }
-        }, 10);
-
-    }, []);
     return <>
         <NavBar />
         <div style={{ paddingLeft: "7vw" }}>
+            <Announcement content={[
+                {
+                    description: "VEX robotics tutorial for KCIS can be found here!!!",
+                    link: "https://acezxn.gitbook.io/vex-ji-qi-ren-cheng-shi-jiao-xue/"
+                }
+            ]}></Announcement>
+
             <br />
             <br />
             <br />
             <br />
             <h2>About this tool</h2>
-            <div style={{
-                position: "fixed",
-                width: "94%",
-                height: "3vw",
-                top: 0,
-                left: "6vw",
-                backgroundColor: "rgba(180, 180, 180, 0.3)",
-                zIndex: "1",
-                overflow: "hidden",
-            }} id="announcement">
-                <p style={{ 
-                    fontSize: "max(1vw, 10px)",
-                    whiteSpace: "nowrap",
-                    clear: "both",
-                    float: "left",
-                    }} id="announce_msg">
-                    VEX robotics tutorial for KCIS can be found here!!!
-                    <a style={{ fontSize: "max(1vw, 10px)" }} href="https://acezxn.gitbook.io/vex-ji-qi-ren-cheng-shi-jiao-xue/"> https://acezxn.gitbook.io/vex-ji-qi-ren-cheng-shi-jiao-xue/</a>
-                </p>
-            </div>
 
             <p>
                 This is an open source tool deployed on the web to assist robot competition teams to create
