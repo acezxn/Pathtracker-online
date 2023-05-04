@@ -5,6 +5,13 @@ class CubicBezier {
     constructor(ctlpoints) {
         this.ctlpoints = ctlpoints;
     }
+    /**
+     * Get coordinate from the spline curve with time t 
+     *
+     * @param {number} t
+     * @return {{t1: number, t2: number}} coordinate in time t
+     * @memberof CubicBezier
+     */
     get_spline_point(t) {
         let tx, ty;
         if (this.ctlpoints.length > 0) {
@@ -29,6 +36,13 @@ class CubicBezier {
         return { tx, ty };
     }
 
+    /**
+     * Get an array of all points in the path
+     *
+     * @param {number} progress step size
+     * @return {Waypoint[]} all points in the path 
+     * @memberof CubicBezier
+     */
     get_full_path(progress) {
         const max_velocity_input = document.getElementById("max_velocity_input");
         const field_width_input = document.getElementById("field_width");

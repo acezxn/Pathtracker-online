@@ -6,6 +6,13 @@ class CatmullRom {
         this.ctlpoints = ctlpoints;
     }
 
+    /**
+     * Get coordinate from the spline curve with time t 
+     *
+     * @param {number} t
+     * @return {{t1: number, t2: number}} coordinate in time t
+     * @memberof CatmullRom
+     */
     get_spline_point(t) {
         let p1 = Math.floor(t) + 1;
         let p2 = p1 + 1;
@@ -35,6 +42,13 @@ class CatmullRom {
         return { tx, ty };
     }
 
+    /**
+     * Get an array of all points in the path
+     *
+     * @param {number} progress step size
+     * @return {Waypoint[]} all points in the path 
+     * @memberof CatmullRom
+     */
     get_full_path(progress) {
         const max_velocity_input = document.getElementById("max_velocity_input");
         const field_width_input = document.getElementById("field_width");

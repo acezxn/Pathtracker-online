@@ -1,4 +1,6 @@
 import Stage from "../components/Stage";
+import "../css/stage.css"
+import "../css/tabs.css"
 
 import FieldSettings from "../components/settings_display/FieldSettings";
 import FieldObjects from "../objects/field_objects";

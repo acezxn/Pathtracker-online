@@ -1,4 +1,5 @@
 import OutputManager from "../objects/output_manager"
+import "../css/ExportManager.css"
 
 export default function ExportManager() {
     return <>

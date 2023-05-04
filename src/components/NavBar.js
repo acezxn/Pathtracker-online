@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import "../css/NavBar.css"
+
 export default function NavBar() {
     return <>
         <ul>

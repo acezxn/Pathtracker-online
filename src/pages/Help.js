@@ -51,16 +51,17 @@ export default function Help() {
                 <h3>Sessions</h3>
                 <p>
                     By hitting the save hotkey, users can save the current state 
-                    of the playground to a json session file. Things that would be 
+                    of the workspace to a json session file. Things that would be 
                     saved include control points, field setings (background image not included), 
                     color settings, robot settings, and pursuit settings.
 
                     <br/>
                     <br/>
                     In controls tab, the load session input allows users to import 
-                    session files to the playground. By this way, users can save 
+                    session files to the workspace. By this way, users can save 
                     their successful simulations and share them with their teammates.
                 </p>
+                <p>For more information, see <a href="https://github.com/acezxn/Pathtracker-online/wiki/Detailed-Guide">wiki.</a></p>
             </div>
         </div>
     </>

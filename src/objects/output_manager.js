@@ -17,8 +17,8 @@ class OutputManager {
 
         // print mouse coordinate to the screen
         const rect = canvas.getBoundingClientRect();
-        const x = (e.clientX - rect.left) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value) / (+coord_per_dimension_input.value) * canvas.clientWidth;
-        const y = (e.clientY - rect.top) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value) / (+coord_per_dimension_input.value) * canvas.clientWidth;
+        var x = (e.clientX - rect.left) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value) / (+coord_per_dimension_input.value) * canvas.clientWidth;
+        var y = (e.clientY - rect.top) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value) / (+coord_per_dimension_input.value) * canvas.clientWidth;
     
         var converted_x = Math.round(x / canvas.clientWidth * (+coord_per_dimension_input.value) * 100) / 100;
         var converted_y = Math.round(y / canvas.clientWidth * (+coord_per_dimension_input.value) * 100) / 100;
@@ -49,8 +49,8 @@ class OutputManager {
         switch (output_option.value) {
             case "ctlpoint":
                 for (let p of FieldObjects.path.ctlpoints) {
-                    var x = p.get_x() / canvas.width * (+coord_per_dimension_input.value) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
-                    var y = p.get_y() / canvas.height * (+coord_per_dimension_input.value) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
+                    let x = p.get_x() / canvas.width * (+coord_per_dimension_input.value) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
+                    let y = p.get_y() / canvas.height * (+coord_per_dimension_input.value) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
                     if (y_inverse_input.checked) {
                         y *= -1;
                     }
@@ -59,8 +59,8 @@ class OutputManager {
                 break;
             case "full":
                 for (let p of FieldObjects.path.fullpath) {
-                    var x = p.get_x() / canvas.width * (+coord_per_dimension_input.value) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
-                    var y = p.get_y() / canvas.height * (+coord_per_dimension_input.value) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
+                    let x = p.get_x() / canvas.width * (+coord_per_dimension_input.value) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
+                    let y = p.get_y() / canvas.height * (+coord_per_dimension_input.value) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
                     if (y_inverse_input.checked) {
                         y *= -1;
                     }

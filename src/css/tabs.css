@@ -1,0 +1,29 @@
+.tabpadding {
+    padding-bottom: 0.2vw;
+    padding-left: 0.2vw;
+}
+
+.tabcontent {
+    background-color: var(--widget);
+    margin: 4px, 4px;
+    padding: 4px;
+    width: 41vw;
+    height: 24.15vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+    border: 0.1vw solid var(--widget_border);
+    border-radius: 5px;
+}
+
+.controls_tab {
+    float: left;
+    width: 40%;
+    text-align: left;
+}
+
+.settings_tab {
+    float: left;
+    width: 40%;
+    text-align: left;
+}
