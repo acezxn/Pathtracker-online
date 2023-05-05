@@ -1,7 +1,7 @@
 .option_title {
     text-align: left;
     font-size: max(1.7vw, 15px);
-    padding: 0px 5px;
+    padding: 0px 0.6vw;
 }
 
 .tab_title {
@@ -13,7 +13,7 @@
 .option_text {
     text-align: left;
     font-size: max(1.5vw, 10px);
-    padding: 0px 5px;
+    padding: 0px 0.6vw;
 }
 
 .file_input {
@@ -38,6 +38,7 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: max(1.5vw, 10px);
     width: 10vw;
+    margin-left: 0.6vw;
 
     display: inline-block;
     outline: none;
@@ -72,7 +73,7 @@
 }
 
 .textarea {
-    width: 91vw;
+    width: 92.5vw;
     border-radius: 4px;
     border: solid transparent;
     background-color: var(--widget);

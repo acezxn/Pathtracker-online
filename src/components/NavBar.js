@@ -8,7 +8,7 @@ export default function NavBar() {
             <li><Link to="/about">About</Link></li>
             <li><Link to="/help">Help</Link></li>
         </ul>
-        <div style={{ paddingBottom: "0.5vw"}}>
+        <div style={{ paddingBottom: "0.2vw"}}>
         </div>
     </>
 }

@@ -1,7 +1,6 @@
 /* stage related */
 canvas {
     border: 1px solid var(--widget_border);
-    border-radius: 5px;
     height: auto;
 }
 

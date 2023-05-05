@@ -3,7 +3,7 @@ import "../css/ExportManager.css"
 
 export default function ExportManager() {
     return <>
-        <div className="exportmanager" style={{ paddingLeft: "6.5vw" }}>
+        <div className="exportmanager" style={{ paddingLeft: "6.5vw"}}>
             <p className="option_text"><b>Coordinate output</b></p>
             <label className="option_text">Things to output: </label>
             <select id="output_option" className="option_list" style={{ display: "inline-block" }} onChange={OutputManager.update_output}>

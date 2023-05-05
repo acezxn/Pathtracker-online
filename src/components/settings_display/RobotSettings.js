@@ -22,7 +22,7 @@ export default function RobotSettings() {
         <br />
         <br />
 
-        <i>Note: the following constants needs to be tuned on the actual robot,
+        <i style={{marginLeft: "0.6vw"}}>Note: the following constants needs to be tuned on the actual robot,
             don't directly copy the values to the robot code.</i>
         <br />
         <br />

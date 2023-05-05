@@ -23,6 +23,6 @@ export default function FieldSettings() {
         <input type="file" id="img_input" name="img_input" accept="image/*" className="file_input" onChange={set_background_img}></input>
         <button className="option_input" id="clear_img" style={{ width: "auto" }} onClick={clear_background_img}>clear image</button>
         <br />
-        <i>Note: you could only upload square images.</i>
+        <i style={{marginLeft: "0.6vw"}}>Note: you could only upload square images.</i>
     </>
 }
