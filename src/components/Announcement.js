@@ -45,9 +45,9 @@ export default function Announcement(props) {
         <div style={{
             position: "fixed",
             width: "94%",
-            height: "3vw",
+            height: "max(3vw, 30px)",
             top: 0,
-            left: "6vw",
+            left: "max(6vw, 50px)",
             backgroundColor: "rgba(180, 180, 180, 0.3)",
             zIndex: "1",
             overflow: "hidden",

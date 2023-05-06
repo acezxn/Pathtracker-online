@@ -2,7 +2,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 6vw;
+    width: max(6vw, 50px);
     background-color: #e5e5e5;
     height: 100%;
     position: fixed;
@@ -16,14 +16,11 @@ li a {
     background-color: #e5e5e5;
     color: black;
     text-decoration: none;
+    border-radius: 0.4vw;
     font-family: 'Play', sans-serif;
+    font-size: max(min(1.7vw, 20px), 15px);
 }
 
 li a:hover {
-    display: block;
-    padding: 1vw;
     background-color: #c2c2c2;
-    border-radius: 0.4vw;
-    color: black;
-    text-decoration: none;
 }

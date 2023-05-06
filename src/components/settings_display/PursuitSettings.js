@@ -6,6 +6,7 @@ export default function PursuitSettings() {
             <option value="pid">PID based</option>
             <option value="curvature">Curvature based</option>
         </select>
+        <br />
         <label className="option_text">look ahead radius (meters): </label>
         <input type="text" id="lookahead_radius_input" className="option_input" defaultValue={0.3}></input>
         <br />

@@ -16,7 +16,7 @@ const PathFollowSimulator = () => {
     return (
         <>
             <NavBar/>
-            <div style={{ overflow: "auto", paddingLeft : "1.5vw"}}>
+            <div style={{ overflow: "auto", paddingLeft : "max(1.5vw, 20px)"}}>
                 <div className="stageholder">
                     <Stage />
                     <p style={{marginLeft: "0.6vw"}} className="small" id="mouse_coordinate"></p>

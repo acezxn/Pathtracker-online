@@ -7,7 +7,7 @@ import Announcement from "../components/Announcement";
 const About = () => {
     return <>
         <NavBar />
-        <div style={{ paddingLeft: "7vw" }}>
+        <div style={{ paddingLeft: "max(7vw, 60px)" }}>
             <Announcement content={[
                 {
                     description: "VEX robotics tutorial for KCIS can be found here!!!",
@@ -63,7 +63,7 @@ const About = () => {
                 lookahead point due to these assumptions:
                 <br />
             </p>
-            <ol>
+            <ol style={{fontSize: "max(min(1.5vw, 20px), 10px)"}}>
                 <li>
                     A path consists of many points
                 </li>

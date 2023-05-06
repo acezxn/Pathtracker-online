@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, json } from 'react-router-dom';
+import { HashRouter} from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { Helmet } from 'react-helmet';
 import jsonToCssVariables from 'json-to-css-variables';
