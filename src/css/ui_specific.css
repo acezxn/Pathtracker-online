@@ -16,33 +16,6 @@
   padding: 0px 0.6vw;
 }
 
-input[type="file"] {
-  text-align: left;
-  font-family: 'Play', sans-serif;
-  font-size: max(min(1.7vw, 18px), 10px);
-
-  color: transparent;
-  display: inline-block;
-  width: 10vw;
-}
-
-
-input[type=file]::file-selector-button {
-  border: none;
-  background: #ffffff;
-  padding: 0.2vw 1vw;
-  border-radius: .5rem;
-  color: #000000;
-  font-family: 'Play', sans-serif;
-  cursor: pointer;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: .1s ease-in-out;
-}
-
-input[type=file]::file-selector-button:hover {
-  background: #cecece;
-}
-
 .option_input {
   background-color: #FFFFFF;
   border: 1px solid rgb(209,213,219);
@@ -101,16 +74,6 @@ input[type=file]::file-selector-button:hover {
   -webkit-user-select: none;
   touch-action: manipulation;
   width: 3vw;
-}
-
-input[type="color"] {
-  -webkit-appearance: none;
-  background: none;
-  cursor: pointer;
-  height: 1.5em;
-  padding: 0;
-  width: 5em;
-  border: none;
 }
 
 

@@ -94,8 +94,6 @@ i {
 
 
 button {
-
-
   border: none;
   background: #ffffff;
   padding: 0.2vw 1vw;
@@ -123,4 +121,79 @@ button:focus {
 
 button:focus-visible {
   box-shadow: none;
+}
+
+input[type="file"] {
+  text-align: left;
+  font-family: 'Play', sans-serif;
+  font-size: max(min(1.7vw, 18px), 10px);
+
+  color: transparent;
+  display: inline-block;
+  width: 10vw;
+}
+
+
+input[type=file]::file-selector-button {
+  border: none;
+  background: #ffffff;
+  padding: 0.2vw 1vw;
+  border-radius: .5rem;
+  color: #000000;
+  font-family: 'Play', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: .1s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #cecece;
+}
+
+input[type="color"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  cursor: pointer;
+  height: 1.5em;
+  padding: 0;
+  width: 5em;
+  border: none;
+}
+
+input[type="range"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 15rem;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #ffffff;
+  border-radius: 0.5vw;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+input[type="range"]::-moz-range-track {
+  background: #ffffff;
+  border-radius: 0.5vw;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  height: 1em;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 10vw;
+  background-color: #3f76ff;
+  height: 1rem;
+  width: 1rem; 
+}
+
+input[type="range"]::-moz-range-thumb {
+  border: none;
+  border-radius: 10vw;
+  background-color: #3f76ff;
 }
