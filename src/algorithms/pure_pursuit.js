@@ -1,4 +1,5 @@
 import Waypoint from "../objects/drawable_objects/waypoint";
+import Utils from "../utils";
 class PurePursuit {
     static pursuit_mode = {
         pid: 0,
@@ -28,6 +29,10 @@ class PurePursuit {
 
         this.total_error_displacement = 0;
         this.total_error_rotation = 0;
+        const max_velocity_input = document.getElementById("max_velocity_input");
+        const field_width_input = document.getElementById("field_width");
+        const canvas = document.getElementById("Stage");
+        this.velocity = Utils.meters_to_pixel(+max_velocity_input.value, +field_width_input.value, canvas.width);
     }
 
     /**
@@ -181,8 +186,10 @@ class PurePursuit {
             case PurePursuit.pursuit_mode.curvature:
                 const curvature = 2 * lookahead.get_x() / (lookahead.get_x()**2 + lookahead.get_y()**2);
                 
-                forward = lookahead.get_linvel(); // get linear velocity
+                // forward = lookahead.get_linvel(); // get linear velocity
+                forward = this.velocity;
                 rotation = forward * curvature * this.trackwidth / 2;
+                console.log(forward)
                 break;
             default:
                 console.log("PurePursuit: invalid pursuit mode");
