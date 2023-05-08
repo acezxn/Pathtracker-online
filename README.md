@@ -6,7 +6,7 @@ Online robot path planning tool with simulation capabilties
 
 ## Features
 
-- Spline curve generation using the catmull rom algorithm
+- Spline curve generation using multiple path generation algorithms
 - Robot pursuit behavior simulation with multiple algorithms using customized robot parameter settings
 - Customizable export of coordinate data
 - Simulation session saving and loading
