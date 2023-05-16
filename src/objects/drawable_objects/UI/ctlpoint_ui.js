@@ -105,6 +105,20 @@ class CtlpointUI extends InStageUI {
      * @memberof CtlpointUI
      */
     #pack() {
+        const canvas = document.getElementById("Stage");
+        let total_width = this.buttons.length * this.buttons[0].size.width + (this.buttons.length + 1) * this.padding_horizontal;
+        let total_height = this.buttons[0].size.height + 2 * this.padding_vertical;
+        
+        // adjust the UI position when some parts go out of the stage
+        if (canvas !== null) {
+            if (this.position.x + total_width > canvas.width) {
+                this.position.x -= total_width;
+            }
+            if (this.position.y + total_height > canvas.height) {
+                this.position.y -= total_height;
+            }
+        }   
+
         // calculate window width, height, and button positions
         let width = 0, height = 0;
         for (let i = 0; i < this.buttons.length; i++) {
