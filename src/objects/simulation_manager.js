@@ -121,6 +121,7 @@ class SimulationManager {
                 let behavior = new RobotBehavior(RobotBehavior.actions.pursuit, SimulationManager.pursuit_settings);
                 var robot = new Robot(SimulationManager.robot_position, SimulationManager.robot_appearance, SimulationManager.robot_performance, SimulationManager.pid_constants, behavior);
                 FieldObjects.objects.push(robot);
+                FieldObjects.instage_ui.set_visibility(false);
             } else {
                 SimulationManager.simulating = false;
                 simulate_btn.innerHTML = "Simulate";

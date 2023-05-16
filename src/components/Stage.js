@@ -13,6 +13,7 @@ const Stage = props => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
         for (let drawable_obj of FieldObjects.objects) {
             drawable_obj.render(ctx, settings);
+            // console.log(drawable_obj);
         }
     }
 

@@ -1,12 +1,26 @@
 import DrawableObject from "./drawable_object";
 
 class Point extends DrawableObject {
-    constructor(x, y, radius=7, fill_color="#000000") {
+    constructor(x, y, radius=7, fill_color="#000000", is_control_point = false, is_direction_handle = false) {
         super();
         this.x          = x;
         this.y          = y;
         this.radius     = radius;
         this.fill_color = fill_color;
+        this.is_control_point = is_control_point;
+        this.is_direction_handle = is_direction_handle;
+    }
+    get_is_control_point() {
+        return this.is_control_point;
+    }
+    get_is_direction_handle() {
+        return this.is_direction_handle;
+    }
+    set_is_control_point(is_control_point) {
+        this.is_control_point = is_control_point;
+    }
+    set_is_direction_handle(is_direction_handle) {
+        this.is_direction_handle = is_direction_handle;
     }
     get_x() {
         return this.x;

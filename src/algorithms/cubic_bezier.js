@@ -50,7 +50,7 @@ class CubicBezier {
         const velocity = Utils.meters_to_pixel(+max_velocity_input.value, +field_width_input.value, canvas.width);
         var path = []
 
-        for (var t = 0; t <= Math.floor(this.ctlpoints.length / 3); t += progress) {
+        for (var t = 0; t <= Math.floor((this.ctlpoints.length-1) / 3); t += progress) {
             var coordinate = this.get_spline_point(t);
             var point = new Waypoint(coordinate.tx, coordinate.ty, 0, velocity, 0, 3, "#000000");
             path.push(point);

@@ -5,8 +5,8 @@ import OutputManager from "../output_manager";
 class Path extends DrawableObject {
     constructor() {
         super();
-        this.ctlpoints = [];
-        this.fullpath = [];
+        this.ctlpoints = []; // an array of Point
+        this.fullpath = [];  // an array of Waypoint
         this.settings = {};
         this.algorithm = "catmull_rom";
     }
@@ -27,8 +27,16 @@ class Path extends DrawableObject {
         }
         if (this.algorithm === "cubic_bezier") {
             path_generator = new CubicBezier(this.ctlpoints);
+            for (let i = 0; i < this.ctlpoints.length; i++) {
+                if (i % 3 != 0) { // direction handles
+                    this.ctlpoints[i].set_is_direction_handle(true);
+                    this.ctlpoints[i].set_is_control_point(false);
+                } else {
+                    this.ctlpoints[i].set_is_direction_handle(false);
+                    this.ctlpoints[i].set_is_control_point(true);
+                }
+            }
         }
-
         this.fullpath = path_generator.get_full_path(1 / (+this.settings.point_density));
         OutputManager.update_output();
     }
