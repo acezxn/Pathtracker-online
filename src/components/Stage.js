@@ -36,6 +36,7 @@ const Stage = props => {
         document.onkeydown = handle_keydown;
         window.addEventListener("contextmenu", handle_ctxmenu);
         context.lineWidth = 2;
+        canvas.onselectstart = function () { return false; }
 
         //Our draw came here
         const render = () => {

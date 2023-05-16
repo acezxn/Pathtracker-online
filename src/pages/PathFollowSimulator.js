@@ -19,7 +19,7 @@ const PathFollowSimulator = () => {
             <div style={{ overflow: "auto", paddingLeft : "max(1.5vw, 20px)"}}>
                 <div className="stageholder">
                     <Stage />
-                    <p style={{marginLeft: "0.6vw"}} className="small" id="mouse_coordinate"></p>
+                    <p style={{marginLeft: "0.6vw", WebkitUserSelect: "none", MozUserSelect: "none"}} className="small" id="mouse_coordinate"></p>
                 </div>
                 <ControlsTab></ControlsTab>
                 <div className="settings_tab">

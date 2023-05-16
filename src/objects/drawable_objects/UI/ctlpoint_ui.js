@@ -1,4 +1,3 @@
-import { insert_ctlpoint, remove_ctlpoint } from "../../event_handler";
 import Button from "./button";
 import InStageUI from "./instage_ui";
 import add_next from "../../../icons/UI_icons/add_next.png";
@@ -25,7 +24,7 @@ class CtlpointUI extends InStageUI {
             description: "Add a control point to the next position",
             icon_src: add_next,
             onclick: () => {
-                insert_ctlpoint(this.ctlpoint_idx, 1);
+                FieldObjects.path.insert_ctlpoint(this.ctlpoint_idx, 1);
             }
         });
         this.insert_back_button = new Button({
@@ -33,7 +32,7 @@ class CtlpointUI extends InStageUI {
             description: "Add a control point to the previous position",
             icon_src: add_previous,
             onclick: () => {
-                insert_ctlpoint(Math.max(this.ctlpoint_idx, 0), 0);
+                FieldObjects.path.insert_ctlpoint(Math.max(this.ctlpoint_idx, 0), 0);
             }
         });
         this.remove_point_button = new Button({
@@ -41,7 +40,7 @@ class CtlpointUI extends InStageUI {
             description: "Remove this control point",
             icon_src: remove_point,
             onclick: () => {
-                remove_ctlpoint(this.ctlpoint_idx);
+                FieldObjects.path.remove_ctlpoint(this.ctlpoint_idx);
             }
         });
         this.buttons = [
@@ -63,26 +62,27 @@ class CtlpointUI extends InStageUI {
      * @memberof CtlpointUI
      */
     handle_mouseclick(mouse_x, mouse_y) {
-
         // execute button onclicks
         let button_clicked = false;
         if (this.show) {
             for (let i = 0; i < this.buttons.length; i++) {
                 button_clicked = button_clicked || this.buttons[i].handle_mouseclick(mouse_x, mouse_y);
             }
+            if (button_clicked) {
+                this.show = false;
+                FieldObjects.description.set_visibility(false);
+            }
+            return this.hovering(mouse_x, mouse_y);
+        } else {
+            return false;
         }
-        if (button_clicked) {
-            this.show = false;
-            FieldObjects.description.set_visibility(false);
-        }
-        return this.hovering(mouse_x, mouse_y);
+        
     }
 
     handle_hover_description(mouse_x, mouse_y) {
         if (this.show) {
             for (let i = 0; i < this.buttons.length; i++) {
                 if (this.buttons[i].hovering(mouse_x, mouse_y)) {
-                    console.log(this.buttons[i].get_description())
                     return this.buttons[i].get_description();
                 }
             }
