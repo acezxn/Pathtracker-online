@@ -25,19 +25,35 @@ class Description extends DrawableObject {
     }
     render(ctx, settings) {
         if (this.show) {
+            const canvas = document.getElementById("Stage");
+            let boxwidth = ctx.measureText(this.text).width+20;
+            let boxheight = 40;
+            let boxoffset_y = 15
+
+            if (canvas !== null) {
+                if (this.position.x + boxwidth*0.5 > canvas.width) {
+                    this.position.x -= this.position.x + boxwidth*0.5 - canvas.width;
+                }
+                else if (this.position.x - boxwidth*0.5 < 0) {
+                    this.position.x -= this.position.x - boxwidth*0.5;
+                }
+                if (this.position.y + boxheight + boxoffset_y > canvas.height) {
+                    this.position.y -= this.position.y + boxheight + boxoffset_y - canvas.height;
+                }
+            }   
+
             ctx.font = this.font;
 
             // render description box
-            let boxwidth = ctx.measureText(this.text).width+20;
             ctx.beginPath();
-            ctx.roundRect(this.position.x - boxwidth / 2, this.position.y+15, boxwidth, 40, [this.border_radius]);
+            ctx.roundRect(this.position.x - boxwidth / 2, this.position.y+boxoffset_y, boxwidth, boxheight, [this.border_radius]);
             ctx.fillStyle = this.background_color;
             ctx.fill();
             
             // render description text
             ctx.fillStyle = this.color;
             ctx.textAlign = "center";
-            ctx.fillText(this.text, this.position.x, this.position.y + 40);
+            ctx.fillText(this.text, this.position.x, this.position.y + boxheight);
         }
     }
 }
