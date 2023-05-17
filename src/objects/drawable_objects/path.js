@@ -3,6 +3,7 @@ import CatmullRom from "../../algorithms/catmull_rom";
 import CubicBezier from "../../algorithms/cubic_bezier";
 import OutputManager from "../output_manager";
 import FieldObjects from "../field_objects";
+import Utils from "../../utils";
 import Point from "./point";
 class Path extends DrawableObject {
     constructor() {
@@ -185,7 +186,6 @@ class Path extends DrawableObject {
         FieldObjects.path.update();
     }
 
-
     /**
      * Insert control point to the path
      *
@@ -196,18 +196,66 @@ class Path extends DrawableObject {
      */
     insert_ctlpoint(idx, offset) {
         const curve_type_input = document.getElementById("curve_type_input");
+        const canvas = document.getElementById("Stage");
         if (curve_type_input.value === "catmull_rom") {
-            let current_point = FieldObjects.path.ctlpoints[idx];
-            FieldObjects.path.ctlpoints.splice(idx + offset, 0, new Point(current_point.get_x(), current_point.get_y() + 100, 7, "#000000", true));
+            let current_point, next_point;   
+            let x_change, y_change, direction = 1;
+
+            // if point selected is in the middle of the path
+            if (idx + offset !== 0 && idx + offset < FieldObjects.path.ctlpoints.length) {          
+                current_point = FieldObjects.path.ctlpoints[idx + offset - 1];
+                next_point = FieldObjects.path.ctlpoints[idx + offset];
+            }
+
+            // if point selected is at the end of the path
+            else if (idx + offset === FieldObjects.path.ctlpoints.length) {
+                current_point = FieldObjects.path.ctlpoints[idx];
+                next_point = FieldObjects.path.ctlpoints[idx - 1];
+                direction = -1;
+            }
+
+            // if point selected is at the start of the path
+            else if (idx + offset === 0) {
+                current_point = FieldObjects.path.ctlpoints[idx];
+                next_point = FieldObjects.path.ctlpoints[idx + 1];
+                direction = -1;
+            }
+
+            x_change = direction * (next_point.get_x() - current_point.get_x()) * 0.5;
+            y_change = direction * (next_point.get_y() - current_point.get_y()) * 0.5;
+            
+            // if the new coordinate is not within the stage
+            let new_coordinate = Utils.adjust_coordinate({
+                x: current_point.get_x(), 
+                y: current_point.get_y(), 
+                x_change: x_change,
+                y_change: y_change,
+                canvas: canvas
+            });
+
+            FieldObjects.path.ctlpoints.splice(idx + offset, 0, new Point(new_coordinate.x, new_coordinate.y, 7, "#000000", true));
         }
         else if (curve_type_input.value === "cubic_bezier") {
             if (FieldObjects.path.ctlpoints.length < 4) {
                 return;
             }
+            let x_change, y_change;
             // if inserting point at the end of the path
             if (idx + 3 * (offset - 1) + 1 >= FieldObjects.path.ctlpoints.length) {
                 let current_point = FieldObjects.path.ctlpoints[idx];
-                this.add_ctlpoint(current_point.get_x(), current_point.get_y() + 100);
+                let prev_point = FieldObjects.path.ctlpoints[idx - 3];
+                x_change = (current_point.get_x() - prev_point.get_x()) * 0.5;
+                y_change = (current_point.get_y() - prev_point.get_y()) * 0.5;
+
+                let new_coordinate = Utils.adjust_coordinate({
+                    x: current_point.get_x(), 
+                    y: current_point.get_y(), 
+                    x_change: x_change,
+                    y_change: y_change,
+                    canvas: canvas
+                });
+
+                this.add_ctlpoint(new_coordinate.x, new_coordinate.y + y_change);
                 return;
             }
 
@@ -219,8 +267,22 @@ class Path extends DrawableObject {
                 p2_x = FieldObjects.path.ctlpoints[idx + 1].get_x();
                 p2_y = FieldObjects.path.ctlpoints[idx + 1].get_y();
 
-                p5_x = p1_x;
-                p5_y = p1_y + 100;
+                let current_point = FieldObjects.path.ctlpoints[idx];
+                let next_point = FieldObjects.path.ctlpoints[idx + 3];
+
+                x_change = (current_point.get_x() - next_point.get_x()) * 0.5;
+                y_change = (current_point.get_y() - next_point.get_y()) * 0.5;
+
+                let new_coordinate = Utils.adjust_coordinate({
+                    x: current_point.get_x(), 
+                    y: current_point.get_y(), 
+                    x_change: x_change,
+                    y_change: y_change,
+                    canvas: canvas
+                });
+
+                p5_x = new_coordinate.x;
+                p5_y = new_coordinate.y;
 
                 p3_x = p1_x + (p1_x - p2_x);
                 p3_y = p1_y + (p1_y - p2_y);
@@ -228,25 +290,42 @@ class Path extends DrawableObject {
                 p4_x = p5_x - (p1_x - p2_x);
                 p4_y = p5_y - (p1_y - p2_y);
 
-
-
                 // direction handle points
                 let p3 = new Point(p3_x, p3_y, 7, "#000000", false, true);
-                let p5 = new Point(p5_x, p5_y, 7, "#000000", false, true);
+                let p4 = new Point(p4_x, p4_y, 7, "#000000", false, true);
 
                 // new control point
-                let p4 = new Point(p4_x, p4_y, 7, "#000000", true, false);
+                let p5 = new Point(p5_x, p5_y, 7, "#000000", true, false);
 
                 FieldObjects.path.ctlpoints.splice(idx, 0, p3);
                 FieldObjects.path.ctlpoints.splice(idx, 0, p4);
                 FieldObjects.path.ctlpoints.splice(idx, 0, p5);
-            } else {
+            } 
+            // if inserting in the middle of the path
+            else {
                 p1_x = FieldObjects.path.ctlpoints[idx + 3 * (offset - 1)].get_x();
                 p1_y = FieldObjects.path.ctlpoints[idx + 3 * (offset - 1)].get_y();
                 p2_x = FieldObjects.path.ctlpoints[idx + 3 * (offset - 1) + 1].get_x();
                 p2_y = FieldObjects.path.ctlpoints[idx + 3 * (offset - 1) + 1].get_y();
-                p4_x = p1_x;
-                p4_y = p1_y + 100;
+
+                let current_point = FieldObjects.path.ctlpoints[idx];
+                let first_point = FieldObjects.path.ctlpoints[idx + 3 * (offset - 1)];
+                let second_point = FieldObjects.path.ctlpoints[idx + 3 * offset];
+
+                let direction = offset > 0 ? 1 : -1;
+                x_change = direction * (second_point.get_x() - first_point.get_x()) * 0.5;
+                y_change = direction * (second_point.get_y() - first_point.get_y()) * 0.5;
+
+                let new_coordinate = Utils.adjust_coordinate({
+                    x: current_point.get_x(), 
+                    y: current_point.get_y(), 
+                    x_change: x_change,
+                    y_change: y_change,
+                    canvas: canvas
+                });
+
+                p4_x = new_coordinate.x;
+                p4_y = new_coordinate.y;
                 p3_x = p4_x + (p1_x - p2_x);
                 p3_y = p4_y + (p1_y - p2_y);
 
