@@ -12,15 +12,6 @@ class PurePursuit {
         this.max_progress_jump = 2;
 
         this.progress = 0;
-        // translational PID constants
-        this.kPT = pid_constants.kPT;
-        this.kIT = pid_constants.kIT;
-        this.kDT = pid_constants.kDT;
-
-        // rotational PID constants
-        this.kPR = pid_constants.kPR;
-        this.kIR = pid_constants.kIR;
-        this.kDR = pid_constants.kDR;
         this.path = null;
         this.interpolate_interval = 10;
 
@@ -33,6 +24,15 @@ class PurePursuit {
         const field_width_input = document.getElementById("field_width");
         const canvas = document.getElementById("Stage");
         this.velocity = Utils.meters_to_pixel(+max_velocity_input.value, +field_width_input.value, canvas.width);
+        // translational PID constants
+        this.kPT = Utils.meters_to_pixel(+pid_constants.kPT, +field_width_input.value, canvas.width);
+        this.kIT = Utils.meters_to_pixel(+pid_constants.kIT, +field_width_input.value, canvas.width);
+        this.kDT = Utils.meters_to_pixel(+pid_constants.kDT, +field_width_input.value, canvas.width);
+
+        // rotational PID constants
+        this.kPR = Utils.meters_to_pixel(+pid_constants.kPR, +field_width_input.value, canvas.width);
+        this.kIR = Utils.meters_to_pixel(+pid_constants.kIR, +field_width_input.value, canvas.width);
+        this.kDR = Utils.meters_to_pixel(+pid_constants.kDR, +field_width_input.value, canvas.width);
     }
 
     /**
@@ -107,11 +107,11 @@ class PurePursuit {
                 if (current_dist <= this.lookahead_radius &&
                     next_dist >= this.lookahead_radius &&
                     this.progress <= i) {
-                    console.log("start");
                     // interpolation
                     var mid_point = new Waypoint(current_point.get_x(), current_point.get_y(), 0, 
                     (current_point.get_linvel() + next_point.get_linvel())/2, 0);
-                    var x_lower = Math.min(current_point.get_x(), current_point.get_x());
+
+                    var x_lower = Math.min(current_point.get_x(), next_point.get_x());
                     var x_higher = Math.max(current_point.get_x(), next_point.get_x());
 
                     var y_lower = Math.min(current_point.get_y(), next_point.get_y());
@@ -173,6 +173,7 @@ class PurePursuit {
         var rotation = 0;
         switch (this.mode) {
             case PurePursuit.pursuit_mode.pid:
+                console.log(lookahead.get_x() / this.lookahead_radius);
                 const error_displacement = reverse ? -lookahead.get_y() / this.lookahead_radius
                     : lookahead.get_y() / this.lookahead_radius;
                 const error_rotation = lookahead.get_x() / this.lookahead_radius;

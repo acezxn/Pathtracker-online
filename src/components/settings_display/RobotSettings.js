@@ -28,7 +28,7 @@ export default function RobotSettings() {
         <br />
 
         <label className="option_text">translational P gain: </label>
-        <input type="text" id="kPT_input" className="option_input" defaultValue={400}></input>
+        <input type="text" id="kPT_input" className="option_input" defaultValue={2}></input>
         <br />
 
         <label className="option_text">translational I gain: </label>
@@ -36,19 +36,19 @@ export default function RobotSettings() {
         <br />
 
         <label className="option_text">translational D gain: </label>
-        <input type="text" id="kDT_input" className="option_input" defaultValue={100}></input>
+        <input type="text" id="kDT_input" className="option_input" defaultValue={2}></input>
         <br />
 
         <label className="option_text">rotational P gain: </label>
-        <input type="text" id="kPR_input" className="option_input" defaultValue={400}></input>
+        <input type="text" id="kPR_input" className="option_input" defaultValue={1.5}></input>
         <br />
 
         <label className="option_text">rotational I gain: </label>
-        <input type="text" id="kIR_input" className="option_input" defaultValue={0}></input>
+        <input type="text" id="kIR_input" className="option_input" defaultValue={0.001}></input>
         <br />
 
         <label className="option_text">rotational D gain: </label>
-        <input type="text" id="kDR_input" className="option_input" defaultValue={100}></input>
+        <input type="text" id="kDR_input" className="option_input" defaultValue={1}></input>
         <br />
     </>
 }
