@@ -107,22 +107,28 @@ class PurePursuit {
                 if (current_dist <= this.lookahead_radius &&
                     next_dist >= this.lookahead_radius &&
                     this.progress <= i) {
-                    
+                    console.log("start");
                     // interpolation
                     var mid_point = new Waypoint(current_point.get_x(), current_point.get_y(), 0, 
                     (current_point.get_linvel() + next_point.get_linvel())/2, 0);
+                    var x_lower = Math.min(current_point.get_x(), current_point.get_x());
+                    var x_higher = Math.max(current_point.get_x(), next_point.get_x());
+
+                    var y_lower = Math.min(current_point.get_y(), next_point.get_y());
+                    var y_higher = Math.max(current_point.get_y(), next_point.get_y());
                     var j = 0;
-                    var ratio = 0.5;
                     while (j < this.interpolate_interval) {
-                        const x = (1 - ratio) * current_point.get_x() + ratio * next_point.get_x();
-                        const y = (1 - ratio) * current_point.get_y() + ratio * next_point.get_y();
+                        const x = (x_lower + x_higher) * 0.5;
+                        const y = (y_lower + y_higher) * 0.5;
                         mid_point.set_coordinate(x, y);
 
                         if (position.distance_to(mid_point) < this.lookahead_radius) {
-                            ratio += (1 - ratio) / 2.0;
+                            x_lower = x;
+                            y_lower = y;
                         }
                         else if (position.distance_to(mid_point) > this.lookahead_radius) {
-                            ratio -= ratio / 2.0;
+                            x_higher = x;
+                            y_higher = y;
                         } else {
                             break;
                         }

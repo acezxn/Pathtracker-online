@@ -255,7 +255,7 @@ class Path extends DrawableObject {
                     canvas: canvas
                 });
 
-                this.add_ctlpoint(new_coordinate.x, new_coordinate.y + y_change);
+                this.add_ctlpoint(new_coordinate.x, new_coordinate.y);
                 return;
             }
 
