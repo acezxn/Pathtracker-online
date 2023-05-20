@@ -111,28 +111,28 @@ class PurePursuit {
                     var mid_point = new Waypoint(current_point.get_x(), current_point.get_y(), 0, 
                     (current_point.get_linvel() + next_point.get_linvel())/2, 0);
 
-                    var x_lower = Math.min(current_point.get_x(), next_point.get_x());
-                    var x_higher = Math.max(current_point.get_x(), next_point.get_x());
+                    var x_prev = current_point.get_x();
+                    var x_next = next_point.get_x();
 
-                    var y_lower = Math.min(current_point.get_y(), next_point.get_y());
-                    var y_higher = Math.max(current_point.get_y(), next_point.get_y());
+                    var y_prev = current_point.get_y();
+                    var y_next = next_point.get_y();
                     var j = 0;
                     while (j < this.interpolate_interval) {
-                        const x = (x_lower + x_higher) * 0.5;
-                        const y = (y_lower + y_higher) * 0.5;
+                        const x = (x_prev + x_next) * 0.5;
+                        const y = (y_prev + y_next) * 0.5;
                         mid_point.set_coordinate(x, y);
 
                         if (position.distance_to(mid_point) < this.lookahead_radius) {
-                            x_lower = x;
-                            y_lower = y;
+                            x_prev = x;
+                            y_prev = y;
                         }
                         else if (position.distance_to(mid_point) > this.lookahead_radius) {
-                            x_higher = x;
-                            y_higher = y;
+                            x_next = x;
+                            y_next = y;
                         } else {
                             break;
                         }
-                        j++
+                        j++;
                     }
                     return mid_point;
                 }
@@ -173,7 +173,6 @@ class PurePursuit {
         var rotation = 0;
         switch (this.mode) {
             case PurePursuit.pursuit_mode.pid:
-                console.log(lookahead.get_x() / this.lookahead_radius);
                 const error_displacement = reverse ? -lookahead.get_y() / this.lookahead_radius
                     : lookahead.get_y() / this.lookahead_radius;
                 const error_rotation = lookahead.get_x() / this.lookahead_radius;
@@ -196,7 +195,6 @@ class PurePursuit {
                 // forward = lookahead.get_linvel(); // get linear velocity
                 forward = this.velocity;
                 rotation = forward * curvature * this.trackwidth / 2;
-                console.log(forward)
                 break;
             default:
                 console.log("PurePursuit: invalid pursuit mode");
