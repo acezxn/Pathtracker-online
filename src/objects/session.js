@@ -23,7 +23,10 @@ class Session {
     
     /**
      * Download current session
-    */
+     *
+     * @static
+     * @memberof Session
+     */
     static download_sess() {
         const curve_type_input = document.getElementById("curve_type_input");
         // stage related settings elements
@@ -118,7 +121,11 @@ class Session {
     
     /**
      * Load uploaded session
-    */
+     *
+     * @static
+     * @param {Event} e event
+     * @memberof Session
+     */
     static load_session(e) {
         const curve_type_input = document.getElementById("curve_type_input");
         // stage related settings elements

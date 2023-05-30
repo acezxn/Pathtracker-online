@@ -30,7 +30,10 @@ class OutputManager {
 
     /**
      * Update coordinate output
-    */
+     *
+     * @static
+     * @memberof OutputManager
+     */
     static update_output() {
         const canvas = document.getElementById("Stage");
         const output_option = document.getElementById("output_option");
@@ -48,9 +51,9 @@ class OutputManager {
         var output = "";
         switch (output_option.value) {
             case "ctlpoint":
-                for (let p of FieldObjects.path.ctlpoints) {
-                    let x = p.get_x() / canvas.width * (+coord_per_dimension_input.value) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
-                    let y = p.get_y() / canvas.height * (+coord_per_dimension_input.value) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
+                for (let point of FieldObjects.path.ctlpoints) {
+                    let x = point.get_x() / canvas.width * (+coord_per_dimension_input.value) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
+                    let y = point.get_y() / canvas.height * (+coord_per_dimension_input.value) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
                     if (y_inverse_input.checked) {
                         y *= -1;
                     }
@@ -58,9 +61,9 @@ class OutputManager {
                 }
                 break;
             case "full":
-                for (let p of FieldObjects.path.fullpath) {
-                    let x = p.get_x() / canvas.width * (+coord_per_dimension_input.value) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
-                    let y = p.get_y() / canvas.height * (+coord_per_dimension_input.value) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
+                for (let point of FieldObjects.path.fullpath) {
+                    let x = point.get_x() / canvas.width * (+coord_per_dimension_input.value) - (+x_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
+                    let y = point.get_y() / canvas.height * (+coord_per_dimension_input.value) - (+y_origin_input.value / +field_width_input.value * +coord_per_dimension_input.value);
                     if (y_inverse_input.checked) {
                         y *= -1;
                     }

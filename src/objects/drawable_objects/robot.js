@@ -33,6 +33,13 @@ class Robot {
         this.box.set_coordinate(this.position[0], this.position[1], this.theta * 180 / Math.PI);
     }
 
+    /**
+     * Move the robot with a specific velocity
+     *
+     * @param {[Number, Number]} velocity left right velocity pair
+     * @param {Number} dt delta time
+     * @memberof Robot
+     */
     move_velocity(velocity, dt) {
         velocity[0] = Math.max(Math.min(velocity[0], this.max_velocity), -this.max_velocity);
         velocity[1] = Math.max(Math.min(velocity[1], this.max_velocity), -this.max_velocity);
@@ -56,6 +63,14 @@ class Robot {
         this.pursuit.set_mode(mode);
     }
 
+    /**
+     * Set chassis velocity to follow the path
+     *
+     * @param {Path} path path to follow
+     * @param {Number} dt delta time
+     * @returns {Number} 0
+     * @memberof Robot
+     */
     follow_path(path, dt) {
         const pos = new Point(this.position[0], this.position[1]);
         this.pursuit.set_path(path)

@@ -38,7 +38,10 @@ class SimulationManager {
 
     /**
      * Updates the robot configurations
-    */
+     *
+     * @static
+     * @memberof SimulationManager
+     */
     static update_robot_config() {
         const canvas = document.getElementById("Stage");
         const field_width_input = document.getElementById("field_width");
@@ -103,6 +106,9 @@ class SimulationManager {
     
     /**
      * Start and stop simulation
+     *
+     * @static
+     * @memberof SimulationManager
      */
     static toggle_simulation() {
         SimulationManager.simulating = !SimulationManager.simulating;
