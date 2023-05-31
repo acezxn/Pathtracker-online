@@ -19,6 +19,7 @@ Online robot path planning tool with simulation capabilties
 - Dragging the control point to adjust the path
 - Right clicking to remove the selected last control point
 - Pressing the escape key to quickly remove the last control point
+- Clicking on a control point to show point options
 - Adjusting the ```Point density``` slider to add more intermediate points in the path
 
 ### Simulation
