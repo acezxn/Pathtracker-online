@@ -3,7 +3,7 @@ ul {
     margin: 0;
     padding: 0;
     width: max(6vw, 50px);
-    background-color: #e5e5e5;
+    background-color: var(--widget);
     height: 100%;
     position: fixed;
     overflow: auto;
@@ -13,8 +13,8 @@ ul {
 li a {
     display: block;
     padding: 1vw;
-    background-color: #e5e5e5;
-    color: black;
+    background-color: var(--widget);
+    color: var(--text);
     text-decoration: none;
     border-radius: 0.4vw;
     font-family: 'Play', sans-serif;
@@ -22,5 +22,5 @@ li a {
 }
 
 li a:hover {
-    background-color: #c2c2c2;
+    background-color: var(--widget_hover);
 }

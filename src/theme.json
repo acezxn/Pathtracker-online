@@ -4,7 +4,9 @@
     "link_hover" : "#0008ff",
 
     "background" : "#ffffff",
+    "secondary" : "#3f76ff",
     "widget" : "#e5e5e5",
     "widget_hover" : "#c2c2c2",
-    "widget_border" : "rgba(0,0,0,0.2)"
+    "widget_border" : "rgba(0,0,0,0.2)",
+    "widget_shadow": "rgba(0, 0, 0, 0.05)"
 }
