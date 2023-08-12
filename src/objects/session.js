@@ -48,6 +48,7 @@ class Session {
         // robot related settings elements
         const robot_width_input = document.getElementById("robot_width_input");
         const robot_length_input = document.getElementById("robot_length_input");
+        const facing_input = document.getElementById("facing_input");
         const max_velocity_input = document.getElementById("max_velocity_input");
         const max_accel_input = document.getElementById("max_accel_input");
         const max_jerk_input = document.getElementById("max_jerk_input");
@@ -92,6 +93,7 @@ class Session {
                 robot_settings: {
                     robot_width: robot_width_input.value,
                     robot_length: robot_length_input.value,
+                    facing: facing_input.value,
                     max_velocity: max_velocity_input.value,
                     max_acceleration: max_accel_input.value,
                     max_jerk: max_jerk_input.value,
@@ -147,6 +149,7 @@ class Session {
         // robot related settings elements
         const robot_width_input = document.getElementById("robot_width_input");
         const robot_length_input = document.getElementById("robot_length_input");
+        const facing_input = document.getElementById("facing_input");
         const max_velocity_input = document.getElementById("max_velocity_input");
         const max_accel_input = document.getElementById("max_accel_input");
         const max_jerk_input = document.getElementById("max_jerk_input");
@@ -189,6 +192,7 @@ class Session {
             // robot settings
             robot_width_input.value = config.settings.robot_settings.robot_width;
             robot_length_input.value = config.settings.robot_settings.robot_length;
+            facing_input.value = config.settings.robot_settings.facing;
             max_velocity_input.value = config.settings.robot_settings.max_velocity;
             max_accel_input.value = config.settings.robot_settings.max_acceleration;
             max_jerk_input.value = config.settings.robot_settings.max_jerk;

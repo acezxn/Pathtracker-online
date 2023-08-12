@@ -9,6 +9,10 @@ export default function RobotSettings() {
         <input type="text" id="robot_length_input" className="option_input" defaultValue={0.5}></input>
         <br />
 
+        <label className="option_text">Robot facing (degrees right from the direction of the path):</label>
+        <input type="text" id="facing_input" className="option_input" defaultValue={0}></input>
+        <br />
+
         <label className="option_text">Max velocity (m/s): </label>
         <input type="text" id="max_velocity_input" className="option_input" defaultValue={2}></input>
         <br />

@@ -114,10 +114,11 @@ class SimulationManager {
         SimulationManager.simulating = !SimulationManager.simulating;
     
         const simulate_btn = document.getElementById("simulate_btn");
+        const facing_input = document.getElementById("facing_input");
         if (SimulationManager.simulating) {
             simulate_btn.innerHTML = "Stop";
             if (FieldObjects.path.fullpath.length > 1) { // path exists
-                let orientation = Utils.format_angle(90 + Math.atan2(FieldObjects.path.fullpath[1].get_y() - FieldObjects.path.fullpath[0].get_y(), FieldObjects.path.fullpath[1].get_x() - FieldObjects.path.fullpath[0].get_x()) * 180 / Math.PI);
+                let orientation = Utils.format_angle(+facing_input.value + 90 + Math.atan2(FieldObjects.path.fullpath[1].get_y() - FieldObjects.path.fullpath[0].get_y(), FieldObjects.path.fullpath[1].get_x() - FieldObjects.path.fullpath[0].get_x()) * 180 / Math.PI);
                 SimulationManager.update_robot_config();
                 SimulationManager.robot_position = {
                     x: FieldObjects.path.fullpath[0].get_x(),
