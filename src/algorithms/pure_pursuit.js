@@ -99,6 +99,7 @@ class PurePursuit {
         
         for (let i = 0; i < this.path.length; i++) {
             var current_point = this.path[i];
+            current_point.set_highlighted(false);
             if (i + 1 < this.path.length) {
                 var next_point = this.path[i + 1];
                 const current_dist = position.distance_to(current_point);
@@ -107,6 +108,7 @@ class PurePursuit {
                 if (current_dist <= this.lookahead_radius &&
                     next_dist >= this.lookahead_radius &&
                     this.progress <= i) {
+                    current_point.set_highlighted(true);
                     // interpolation
                     var mid_point = new Waypoint(current_point.get_x(), current_point.get_y(), 0, 
                     (current_point.get_linvel() + next_point.get_linvel())/2, 0);

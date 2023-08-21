@@ -21,6 +21,18 @@ class Path extends DrawableObject {
         this.update();
     }
 
+    set_highlight_color(highlight_color) {
+        for (let point of this.fullpath) {
+            point.set_highlight_color(highlight_color);
+        }
+    }
+
+    remove_highlight() {
+        for (let point of this.fullpath) {
+            point.set_highlighted(false);
+        }
+    }
+
     set_algorithm(algo) {
         this.algorithm = algo;
         console.log("Switched to " + this.algorithm);
@@ -48,6 +60,7 @@ class Path extends DrawableObject {
     }
 
     render_fullpath(ctx) {
+        var highlighted = [];
         // process color inputs
         const start_color = this.settings.start_color;
         const end_color = this.settings.end_color;
@@ -81,6 +94,13 @@ class Path extends DrawableObject {
                 ctx.strokeStyle = current_color;
                 ctx.stroke();
             }
+            if (this.fullpath[i].get_highlighted()) {
+                highlighted.push(this.fullpath[i]);
+            }
+        }
+
+        for (let point of highlighted) {
+            point.render(ctx);
         }
     }
 
@@ -158,7 +178,7 @@ class Path extends DrawableObject {
     */
     add_ctlpoint(x, y) {
         const curve_type_input = document.getElementById("curve_type_input");
-        FieldObjects.path.ctlpoints.push(new Point(x, y, 7, "#000000", true));
+        FieldObjects.path.ctlpoints.push(new Point(x, y, 7, "#000000", "#000000", true));
         if (curve_type_input.value === "cubic_bezier") {
             if (FieldObjects.path.ctlpoints.length > 4) {
 
@@ -176,8 +196,8 @@ class Path extends DrawableObject {
                 let p6_y = p7_y + (p3_y - p4_y);
 
                 // direction handle points
-                let p5 = new Point(p5_x, p5_y, 7, "#000000", false, true);
-                let p6 = new Point(p6_x, p6_y, 7, "#000000", false, true);
+                let p5 = new Point(p5_x, p5_y, 7, "#000000", "#000000", false, true);
+                let p6 = new Point(p6_x, p6_y, 7, "#000000", "#000000", false, true);
 
                 FieldObjects.path.ctlpoints.splice(FieldObjects.path.ctlpoints.length - 1, 0, p5);
                 FieldObjects.path.ctlpoints.splice(FieldObjects.path.ctlpoints.length - 1, 0, p6);
@@ -233,7 +253,7 @@ class Path extends DrawableObject {
                 canvas: canvas
             });
 
-            FieldObjects.path.ctlpoints.splice(idx + offset, 0, new Point(new_coordinate.x, new_coordinate.y, 7, "#000000", true));
+            FieldObjects.path.ctlpoints.splice(idx + offset, 0, new Point(new_coordinate.x, new_coordinate.y, 7, "#000000", "#000000", true));
         }
         else if (curve_type_input.value === "cubic_bezier") {
             if (FieldObjects.path.ctlpoints.length < 4) {
@@ -291,11 +311,11 @@ class Path extends DrawableObject {
                 p4_y = p5_y - (p1_y - p2_y);
 
                 // direction handle points
-                let p3 = new Point(p3_x, p3_y, 7, "#000000", false, true);
-                let p4 = new Point(p4_x, p4_y, 7, "#000000", false, true);
+                let p3 = new Point(p3_x, p3_y, 7, "#000000", "#000000", false, true);
+                let p4 = new Point(p4_x, p4_y, 7, "#000000", "#000000", false, true);
 
                 // new control point
-                let p5 = new Point(p5_x, p5_y, 7, "#000000", true, false);
+                let p5 = new Point(p5_x, p5_y, 7, "#000000", "#000000", true, false);
 
                 FieldObjects.path.ctlpoints.splice(idx, 0, p3);
                 FieldObjects.path.ctlpoints.splice(idx, 0, p4);
@@ -333,11 +353,11 @@ class Path extends DrawableObject {
                 p5_y = p4_y - (p1_y - p2_y);
 
                 // direction handle points
-                let p3 = new Point(p3_x, p3_y, 7, "#000000", false, true);
-                let p5 = new Point(p5_x, p5_y, 7, "#000000", false, true);
+                let p3 = new Point(p3_x, p3_y, 7, "#000000", "#000000", false, true);
+                let p5 = new Point(p5_x, p5_y, 7, "#000000", "#000000", false, true);
 
                 // new control point
-                let p4 = new Point(p4_x, p4_y, 7, "#000000", true, false);
+                let p4 = new Point(p4_x, p4_y, 7, "#000000", "#000000", true, false);
 
                 FieldObjects.path.ctlpoints.splice(idx + 3 * (offset - 1) + 2, 0, p3);
                 FieldObjects.path.ctlpoints.splice(idx + 3 * (offset - 1) + 3, 0, p4);

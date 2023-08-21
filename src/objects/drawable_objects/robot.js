@@ -6,7 +6,10 @@ import SimulationManager from "../simulation_manager.js";
 import RobotBehavior from "../robot_behavior.js";
 
 class Robot {
-    constructor({x, y, theta}, {width, length, color, velocity_color}, {max_velocity, max_acceleration, max_jerk}, {kPT, kIT, kDT, kPR, kIR, kDR}, behavior) {
+    constructor({x, y, theta}, 
+        {width, length, robot_color, circle_color, velocity_color}, 
+        {max_velocity, max_acceleration, max_jerk},
+        {kPT, kIT, kDT, kPR, kIR, kDR}, behavior) {
         this.position = [x, y];
         this.velocity = [0, 0];
         this.allowed_acceleration = [0, 0];
@@ -14,9 +17,10 @@ class Robot {
         this.theta = theta * Math.PI / 180;
         this.width = width;
         this.length = length
-        this.color = color;
+        this.robot_color = robot_color;
+        this.circle_color = circle_color;
         this.velocity_color = velocity_color;
-        this.box = new Box(x, y, theta, width, length, color);
+        this.box = new Box(x, y, theta, width, length, robot_color);
         this.behavior = behavior;
         this.lookahead_radius = behavior.perform_details.lookahead_radius;
         this.pursuit = new PurePursuit(this.lookahead_radius, width, {kPT, kIT, kDT, kPR, kIR, kDR});
@@ -118,12 +122,13 @@ class Robot {
         
         if (finished) {
             SimulationManager.toggle_simulation();
+            FieldObjects.path.remove_highlight();
             return;
         }
         this.box.render(ctx, settings);
         this.render_speedbar(ctx);
 
-        ctx.strokeStyle = this.color;
+        ctx.strokeStyle = this.circle_color;
         ctx.beginPath();
         ctx.arc(this.position[0], this.position[1], this.lookahead_radius, 0, 2 * Math.PI);
         ctx.stroke();

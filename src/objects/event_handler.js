@@ -258,6 +258,15 @@ export function clear_path(e) {
     FieldObjects.path.reset();
 }
 
+
+/**
+ * Set highlight color of the path
+ *
+ */
+export function set_highlight_color() {
+    const highlight_color = document.getElementById("lookahead_color_input").value;
+    FieldObjects.path.set_highlight_color(highlight_color);
+}
 /**
  * Handle path generation algorithm change
  * 

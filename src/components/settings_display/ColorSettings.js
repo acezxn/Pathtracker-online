@@ -1,3 +1,5 @@
+import { set_highlight_color } from "../../objects/event_handler";
+
 export default function ColorSettings() {
     return <>
         <p className="option_title"><b>Color settings</b></p>
@@ -19,6 +21,14 @@ export default function ColorSettings() {
 
         <label className="option_text">Robot color: </label>
         <input type="color" id="robot_color_input" defaultValue={"#DDDD00"} />
+        <br />
+
+        <label className="option_text">Lookahead circle color: </label>
+        <input type="color" id="circle_color_input" defaultValue={"#00FF00"} />
+        <br />
+
+        <label className="option_text">Lookahead point color: </label>
+        <input type="color" id="lookahead_color_input" defaultValue={"#FF00FF"} onChange={set_highlight_color} />
         <br />
 
         <label className="option_text">Track velocity color: </label>

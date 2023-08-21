@@ -1,7 +1,7 @@
 import DrawableObject from "./drawable_object";
 
 class Point extends DrawableObject {
-    constructor(x, y, radius = 7, fill_color = "#000000", is_control_point = false, is_direction_handle = false) {
+    constructor(x, y, radius = 7, fill_color = "#000000", highlight_color="#FF00FF", is_control_point = false, is_direction_handle = false) {
         super();
         this.x = x;
         this.y = y;
@@ -9,6 +9,17 @@ class Point extends DrawableObject {
         this.fill_color = fill_color;
         this.is_control_point = is_control_point;
         this.is_direction_handle = is_direction_handle;
+        this.is_highlighted = false;
+        this.highlight_color = highlight_color;
+    }
+    get_highlighted() {
+        return this.is_highlighted;
+    }
+    set_highlighted(is_highlighted) {
+        this.is_highlighted = is_highlighted;
+    }
+    set_highlight_color(highlight_color) {
+        this.highlight_color = highlight_color;
     }
     get_is_control_point() {
         return this.is_control_point;
@@ -46,7 +57,7 @@ class Point extends DrawableObject {
     }
     render(ctx, settings) {
         ctx.beginPath();
-        ctx.fillStyle = this.fill_color;
+        ctx.fillStyle = this.is_highlighted ? this.highlight_color : this.fill_color;
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         ctx.fill();
     }
