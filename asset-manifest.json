@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Pathtracker-online/static/css/main.d149af95.css",
-    "main.js": "/Pathtracker-online/static/js/main.5311f10a.js",
+    "main.js": "/Pathtracker-online/static/js/main.1e98950e.js",
     "static/js/787.4a070335.chunk.js": "/Pathtracker-online/static/js/787.4a070335.chunk.js",
     "static/media/interface.png": "/Pathtracker-online/static/media/interface.828b484b01e0ea6d5ced.png",
     "static/media/settings.png": "/Pathtracker-online/static/media/settings.266080706f260c015f5b.png",
@@ -10,11 +10,11 @@
     "static/media/path.png": "/Pathtracker-online/static/media/path.8942d3c9ffc897bffbb3.png",
     "index.html": "/Pathtracker-online/index.html",
     "main.d149af95.css.map": "/Pathtracker-online/static/css/main.d149af95.css.map",
-    "main.5311f10a.js.map": "/Pathtracker-online/static/js/main.5311f10a.js.map",
+    "main.1e98950e.js.map": "/Pathtracker-online/static/js/main.1e98950e.js.map",
     "787.4a070335.chunk.js.map": "/Pathtracker-online/static/js/787.4a070335.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d149af95.css",
-    "static/js/main.5311f10a.js"
+    "static/js/main.1e98950e.js"
   ]
 }
