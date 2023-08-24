@@ -133,10 +133,12 @@ class SimulationManager {
                 FieldObjects.instage_ui.set_visibility(false);
             } else {
                 SimulationManager.simulating = false;
+                FieldObjects.path.remove_highlight();
                 simulate_btn.innerHTML = "Simulate";
             }
         } else {
             simulate_btn.innerHTML = "Simulate";
+            FieldObjects.path.remove_highlight();
             FieldObjects.objects.pop();
         }
     }
