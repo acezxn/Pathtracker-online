@@ -2,14 +2,14 @@
 
 Online robot path planning tool with simulation capabilties
 
-[visit wbsite](https://acezxn.github.io/Pathtracker-online/)
+[visit wbsite](https://acezxn.github.io/Pathtracker-online/#/path-follow-simulator)
 
 ## Features
 
-- Spline curve generation using multiple path generation algorithms
-- Robot pursuit behavior simulation with multiple algorithms using customized robot parameter settings
-- Customizable export of coordinate data
-- Simulation session saving and loading
+- 🖋 Spline curve generation using multiple path generation algorithms
+- ⚙️ Robot pursuit behavior simulation with multiple algorithms using customized robot parameter settings
+- 📄 Customizable export of coordinate data
+- 📥 Simulation session saving and loading
 
 ## Quick guide
 
