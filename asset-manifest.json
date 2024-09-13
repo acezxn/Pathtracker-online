@@ -1,20 +1,16 @@
 {
   "files": {
-    "main.css": "/Pathtracker-online/static/css/main.d149af95.css",
-    "main.js": "/Pathtracker-online/static/js/main.3feb09fb.js",
-    "static/js/787.4a070335.chunk.js": "/Pathtracker-online/static/js/787.4a070335.chunk.js",
+    "main.css": "/Pathtracker-online/static/css/main.b661678e.css",
+    "main.js": "/Pathtracker-online/static/js/main.1364e897.js",
+    "static/js/453.3a347862.chunk.js": "/Pathtracker-online/static/js/453.3a347862.chunk.js",
     "static/media/interface.png": "/Pathtracker-online/static/media/interface.828b484b01e0ea6d5ced.png",
-    "static/media/settings.png": "/Pathtracker-online/static/media/settings.266080706f260c015f5b.png",
-    "static/media/simulation.png": "/Pathtracker-online/static/media/simulation.1afdb42f78a34bb9cbec.png",
-    "static/media/session_upload.png": "/Pathtracker-online/static/media/session_upload.7d35532b379a67d90750.png",
-    "static/media/path.png": "/Pathtracker-online/static/media/path.8942d3c9ffc897bffbb3.png",
     "index.html": "/Pathtracker-online/index.html",
-    "main.d149af95.css.map": "/Pathtracker-online/static/css/main.d149af95.css.map",
-    "main.3feb09fb.js.map": "/Pathtracker-online/static/js/main.3feb09fb.js.map",
-    "787.4a070335.chunk.js.map": "/Pathtracker-online/static/js/787.4a070335.chunk.js.map"
+    "main.b661678e.css.map": "/Pathtracker-online/static/css/main.b661678e.css.map",
+    "main.1364e897.js.map": "/Pathtracker-online/static/js/main.1364e897.js.map",
+    "453.3a347862.chunk.js.map": "/Pathtracker-online/static/js/453.3a347862.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d149af95.css",
-    "static/js/main.3feb09fb.js"
+    "static/css/main.b661678e.css",
+    "static/js/main.1364e897.js"
   ]
 }
