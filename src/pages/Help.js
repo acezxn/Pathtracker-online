@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 export default function Help() {
     return <>
         <NavBar />
-        <div style={{ paddingLeft: "7vw" }}>
+        <div style={{ paddingLeft: 74 }}>
             <h2>How to use</h2>
             <div>
                 <h3>Quick guide</h3>

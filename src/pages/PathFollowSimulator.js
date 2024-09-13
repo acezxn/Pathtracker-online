@@ -15,11 +15,11 @@ const PathFollowSimulator = () => {
     FieldObjects.reset();
     return (
         <>
-            <NavBar/>
-            <div style={{ overflow: "auto", paddingLeft : "max(1.5vw, 20px)"}}>
+            <NavBar />
+            <div style={{ overflow: "auto", paddingLeft: 74 }}>
                 <div className="stageholder">
                     <Stage />
-                    <p style={{marginLeft: "0.6vw", WebkitUserSelect: "none", MozUserSelect: "none"}} className="small" id="mouse_coordinate"></p>
+                    <p style={{ marginLeft: "0.6vw", WebkitUserSelect: "none", MozUserSelect: "none" }} className="small" id="mouse_coordinate"></p>
                 </div>
                 <ControlsTab></ControlsTab>
                 <div className="settings_tab">

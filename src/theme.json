@@ -1,12 +1,11 @@
 {
-    "text" : "#000000",
-    "link" : "#1100AA",
-    "link_hover" : "#0008ff",
-
-    "background" : "#ffffff",
-    "secondary" : "#3f76ff",
-    "widget" : "#e5e5e5",
-    "widget_hover" : "#c2c2c2",
-    "widget_border" : "rgba(0,0,0,0.2)",
+    "text": "#000030",
+    "link": "#1100AA",
+    "link_hover": "#0008ff",
+    "background": "#f7f8fa",
+    "secondary": "#3f76ff",
+    "widget": "#e1e3e8",
+    "widget_hover": "#00000020",
+    "widget_border": "rgba(0,0,0,0.2)",
     "widget_shadow": "rgba(0, 0, 0, 0.05)"
 }

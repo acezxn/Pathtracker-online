@@ -2,23 +2,23 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: max(6vw, 50px);
     background-color: var(--widget);
     height: 100%;
     position: fixed;
     overflow: auto;
-    border-right: solid 1px rgba(0,0,0,0.1);
+    box-shadow: 1px 1px 1px 1px var(--widget_shadow);
 }
 
 li a {
     display: block;
-    padding: 1vw;
+    padding: 10px;
     background-color: var(--widget);
-    color: var(--text);
     text-decoration: none;
     border-radius: 0.4vw;
+    font-size: 18px;
     font-family: 'Play', sans-serif;
-    font-size: max(min(1.7vw, 20px), 15px);
+    transition: all 0.2s ease-out;
+    color: var(--text);
 }
 
 li a:hover {

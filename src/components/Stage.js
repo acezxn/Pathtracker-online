@@ -69,7 +69,7 @@ const Stage = props => {
         }
     }, [draw])
 
-    return <canvas ref={canvasRef} {...props} id="Stage" width={1000} height={1000} style={{width: "50vw"}} onMouseDown={handle_mousedown} onMouseUp={handle_mouseup} onMouseMove={handle_mousemove}/>
+    return <canvas ref={canvasRef} {...props} id="Stage" width={1000} height={1000} style={{width: "calc(60vw - 74px)"}} onMouseDown={handle_mousedown} onMouseUp={handle_mouseup} onMouseMove={handle_mousemove}/>
 }
 
 export default Stage

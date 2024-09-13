@@ -1,13 +1,13 @@
 .tabpadding {
-    padding-left: 0.2vw;
-    padding-bottom: 0.2vw;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .tabcontent {
     background-color: var(--widget);
-    border: 0.1vw solid var(--widget_border);
-    width: 41.4vw;
-    height: 24.825vw;
+    box-shadow: 1px 1px 1px 1px var(--widget_shadow);
+    width: calc(40vw - 20px);
+    height: calc(32vw - 64px);
     overflow-x: hidden;
     overflow-y: auto;
     text-align: justify;
